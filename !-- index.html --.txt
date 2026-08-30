@@ -1,0 +1,446 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RideFound — Find your perfect mountain bike, without the hassle.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header id="site-header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-ride">RIDE</span><span class="logo-found">FOUND</span>
+            </a>
+            
+            <nav class="desktop-nav">
+                <a href="#hero">Home</a>
+                <a href="#how-it-works">How it works</a>
+                <a href="#finder">MTB Finder</a>
+                <a href="#pricing">Pricing</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#finder" class="btn btn-primary btn-sm">Find my bike →</a>
+                <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#hero" class="mobile-link">Home</a>
+            <a href="#how-it-works" class="mobile-link">How it works</a>
+            <a href="#finder" class="mobile-link">MTB Finder</a>
+            <a href="#pricing" class="mobile-link">Pricing</a>
+            <a href="#finder" class="btn btn-primary btn-lg mobile-cta">Find my bike →</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero-section">
+            <div class="hero-grid container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Find your <br>
+                        <span class="highlight">perfect bike.</span>
+                    </h1>
+                    <p class="hero-subtitle">Without the hassle.</p>
+                    <p class="hero-desc">
+                        Tell us how you ride, your budget and exactly what you're looking for. We'll search the market and find the bikes that fit you.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#finder" class="btn btn-primary btn-lg">Find my perfect bike →</a>
+                        <a href="#how-it-works" class="btn btn-secondary btn-lg">See how it works</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-img-wrapper">
+                        <!-- High quality representation using CSS styling & clean layout -->
+                        <div class="glow-effect"></div>
+                        <div class="hero-bike-card">
+                            <div class="bike-card-header">
+                                <span class="badge-match">YOUR MATCH</span>
+                                <span class="match-score">94%</span>
+                            </div>
+                            <div class="bike-card-body">
+                                <h3>Enduro Pro Build</h3>
+                                <p>“Built around you.”</p>
+                            </div>
+                            <div class="bike-card-footer">
+                                <span class="badge-type">NEW + SECOND-HAND</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TICKER -->
+        <div class="ticker-section">
+            <div class="ticker-track">
+                <span>TRAIL</span> • 
+                <span>ENDURO</span> • 
+                <span>DOWNHILL</span> • 
+                <span>BIKE PARK</span> • 
+                <span>XC</span> • 
+                <span>YOUR RIDE</span> • 
+                <span>TRAIL</span> • 
+                <span>ENDURO</span> • 
+                <span>DOWNHILL</span> • 
+                <span>BIKE PARK</span> • 
+                <span>XC</span> • 
+                <span>YOUR RIDE</span>
+            </div>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <section id="how-it-works" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Less searching.<br>More riding.</h2>
+                    <p class="section-desc">We turn your requirements into a shortlist of bikes worth your time.</p>
+                </div>
+
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <span class="step-num">01</span>
+                        <h3>TELL US</h3>
+                        <p>Budget, riding style, height, location, brands and the details that matter.</p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-num">02</span>
+                        <h3>WE SEARCH</h3>
+                        <p>We look across the new and second-hand market for bikes that actually fit.</p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-num">03</span>
+                        <h3>WE COMPARE</h3>
+                        <p>We assess suspension, geometry, components, price and overall suitability.</p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-num">04</span>
+                        <h3>YOU CHOOSE</h3>
+                        <p>You get a personalised shortlist with our strongest recommendation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MTB FINDER -->
+        <section id="finder" class="section finder-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Let's find your bike.</h2>
+                    <p class="section-desc">“A few questions. Then we do the hard part.”</p>
+                </div>
+
+                <div class="finder-container">
+                    <div class="finder-progress-bar">
+                        <div class="progress-track" id="progress-track"></div>
+                    </div>
+                    <div class="finder-step-indicator" id="step-indicator">STEP 1 / 11</div>
+
+                    <form id="mtb-finder-form">
+                        <!-- Step 1: Budget -->
+                        <div class="finder-step active" data-step="1">
+                            <h3 class="question-title">What's your budget?</h3>
+                            <div class="options-grid">
+                                <label class="radio-card"><input type="radio" name="budget" value="€1k–€2k"><span>€1k–€2k</span></label>
+                                <label class="radio-card"><input type="radio" name="budget" value="€2k–€3k"><span>€2k–€3k</span></label>
+                                <label class="radio-card"><input type="radio" name="budget" value="€3k–€4k" checked><span>€3k–€4k</span></label>
+                                <label class="radio-card"><input type="radio" name="budget" value="€4k–€5k"><span>€4k–€5k</span></label>
+                                <label class="radio-card"><input type="radio" name="budget" value="€5k–€6k"><span>€5k–€6k</span></label>
+                                <label class="radio-card"><input type="radio" name="budget" value="€6k–€7k"><span>€6k–€7k</span></label>
+                                <label class="radio-card"><input type="radio" name="budget" value="€7k–€8k"><span>€7k–€8k</span></label>
+                                <label class="radio-card"><input type="radio" name="budget" value="€8k–€9k"><span>€8k–€9k</span></label>
+                                <label class="radio-card"><input type="radio" name="budget" value="€9k–€10k"><span>€9k–€10k</span></label>
+                                <label class="radio-card"><input type="radio" name="budget" value="€10k+"><span>€10k+</span></label>
+                            </div>
+                            <div class="custom-input-wrap" style="margin-top: 15px;">
+                                <input type="text" name="custom_budget" placeholder="Or enter custom budget..." class="text-input">
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Riding Style -->
+                        <div class="finder-step" data-step="2">
+                            <h3 class="question-title">What type of riding do you do?</h3>
+                            <p class="question-subtitle">Allow multiple selections.</p>
+                            <div class="options-grid">
+                                <label class="checkbox-card"><input type="checkbox" name="riding_style" value="Trail"><span>Trail</span></label>
+                                <label class="checkbox-card"><input type="checkbox" name="riding_style" value="Enduro"><span>Enduro</span></label>
+                                <label class="checkbox-card"><input type="checkbox" name="riding_style" value="Downhill"><span>Downhill</span></label>
+                                <label class="checkbox-card"><input type="checkbox" name="riding_style" value="XC"><span>XC</span></label>
+                                <label class="checkbox-card"><input type="checkbox" name="riding_style" value="Bike Park"><span>Bike Park</span></label>
+                                <label class="checkbox-card"><input type="checkbox" name="riding_style" value="All-round / Mixed"><span>All-round / Mixed</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: New or Second-hand -->
+                        <div class="finder-step" data-step="3">
+                            <h3 class="question-title">New or second-hand?</h3>
+                            <div class="options-grid options-grid-3">
+                                <label class="radio-card"><input type="radio" name="condition" value="New"><span>New</span></label>
+                                <label class="radio-card"><input type="radio" name="condition" value="Second-hand"><span>Second-hand</span></label>
+                                <label class="radio-card"><input type="radio" name="condition" value="Either" checked><span>Either</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Location / Riding -->
+                        <div class="finder-step" data-step="4">
+                            <h3 class="question-title">Where do you ride?</h3>
+                            <textarea name="location" rows="4" placeholder="e.g. Mostly Belgian trails with trips to the Alps and bike parks." class="textarea-input"></textarea>
+                        </div>
+
+                        <!-- Step 5: Priorities -->
+                        <div class="finder-step" data-step="5">
+                            <h3 class="question-title">What matters most?</h3>
+                            <p class="question-subtitle">Allow multiple selections.</p>
+                            <div class="options-grid">
+                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Downhill performance"><span>Downhill performance</span></label>
+                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Climbing ability"><span>Climbing ability</span></label>
+                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Weight"><span>Weight</span></label>
+                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Suspension"><span>Suspension</span></label>
+                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Brakes"><span>Brakes</span></label>
+                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Durability"><span>Durability</span></label>
+                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Value for money"><span>Value for money</span></label>
+                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Components"><span>Components</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Step 6: Height -->
+                        <div class="finder-step" data-step="6">
+                            <h3 class="question-title">What's your height?</h3>
+                            <p class="question-subtitle">This helps determine the appropriate frame size.</p>
+                            <div class="custom-input-wrap">
+                                <input type="number" name="height" placeholder="175" class="text-input" style="max-width: 200px; display: inline-block;"> <span style="color: var(--muted); margin-left: 10px;">cm</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 7: Experience -->
+                        <div class="finder-step" data-step="7">
+                            <h3 class="question-title">How experienced are you?</h3>
+                            <div class="options-grid options-grid-2">
+                                <label class="radio-card"><input type="radio" name="experience" value="Beginner"><span>Beginner</span></label>
+                                <label class="radio-card"><input type="radio" name="experience" value="Intermediate" checked><span>Intermediate</span></label>
+                                <label class="radio-card"><input type="radio" name="experience" value="Advanced"><span>Advanced</span></label>
+                                <label class="radio-card"><input type="radio" name="experience" value="Expert"><span>Expert</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Step 8: Brands -->
+                        <div class="finder-step" data-step="8">
+                            <h3 class="question-title">What brands are you interested in?</h3>
+                            <p class="question-subtitle">You can leave this blank if you want us to decide completely open-mindedly.</p>
+                            <input type="text" name="preferred_brands" placeholder="e.g. YT, Specialized, Trek, Canyon..." class="text-input">
+                        </div>
+
+                        <!-- Step 9: Excluded Brands -->
+                        <div class="finder-step" data-step="9">
+                            <h3 class="question-title">Any brands you DON'T want?</h3>
+                            <p class="question-subtitle">Optional.</p>
+                            <input type="text" name="excluded_brands" placeholder="e.g. Brands to avoid..." class="text-input">
+                        </div>
+
+                        <!-- Step 10: Specific Requirements -->
+                        <div class="finder-step" data-step="10">
+                            <h3 class="question-title">Any specific requirements?</h3>
+                            <textarea name="specific_requirements" rows="4" placeholder="e.g. I want a Fox 38, powerful brakes and 29-inch wheels." class="textarea-input"></textarea>
+                        </div>
+
+                        <!-- Step 11: Contact Details -->
+                        <div class="finder-step" data-step="11">
+                            <h3 class="question-title">We've got your search.</h3>
+                            <p class="question-subtitle" style="margin-bottom: 24px;">“Send us your details and we'll start looking.”</p>
+                            
+                            <div class="form-group-stack">
+                                <div class="input-field-group">
+                                    <label>Name</label>
+                                    <input type="text" name="customer_name" required placeholder="Your name" class="text-input">
+                                </div>
+                                <div class="input-field-group">
+                                    <label>Email address</label>
+                                    <input type="email" name="customer_email" required placeholder="you@example.com" class="text-input">
+                                </div>
+                                <div class="input-field-group">
+                                    <label>WhatsApp number (optional)</label>
+                                    <input type="tel" name="customer_whatsapp" placeholder="+32 ..." class="text-input">
+                                </div>
+                            </div>
+                            
+                            <div class="submit-action-wrap" style="margin-top: 30px;">
+                                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Start my search →</button>
+                                <p class="privacy-note">“Your details are only used to respond to your RideFound request.”</p>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Success State (Hidden by default) -->
+                    <div id="finder-success" class="finder-success-state" style="display: none;">
+                        <div class="success-icon">✓</div>
+                        <h3 class="question-title">Search received.</h3>
+                        <p class="question-subtitle" style="margin-bottom: 24px;">“Your request is ready. We'll get back to you with your personalised shortlist.”</p>
+                        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                            <a href="mailto:YOUR_EMAIL_HERE?subject=RideFound%20Manual%20Submission" class="btn btn-primary">Email RideFound directly</a>
+                            <a href="https://wa.me/YOUR_WHATSAPP_NUMBER_HERE?text=Hi%20RideFound,%20I%20just%20submitted%20my%20bike%20finder%20form." target="_blank" class="btn btn-secondary">WhatsApp RideFound</a>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Controls -->
+                    <div class="finder-controls" id="finder-controls">
+                        <button type="button" id="prev-btn" class="btn btn-secondary" style="visibility: hidden;">← Back</button>
+                        <button type="button" id="next-btn" class="btn btn-primary">Next step →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING -->
+        <section id="pricing" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Transparent pricing.</h2>
+                    <p class="section-desc">One flat fee for complete market clarity.</p>
+                </div>
+
+                <div class="pricing-card-wrapper">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <span class="pricing-tag">MTB FIND</span>
+                            <div class="price-val">€49</div>
+                            <p class="price-sub">One personalised bike shortlist.</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li>✓ 3 recommended bikes</li>
+                            <li>✓ New and/or second-hand options</li>
+                            <li>✓ Price comparison</li>
+                            <li>✓ Key specifications</li>
+                            <li>✓ Pros and cons</li>
+                            <li>✓ Why each bike fits you</li>
+                            <li>✓ Our strongest recommendation</li>
+                        </ul>
+                        <div class="pricing-action">
+                            <a href="#finder" class="btn btn-primary btn-lg" style="width: 100%;">Find my bike →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXAMPLE RESULTS -->
+        <section class="section example-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="label-small">EXAMPLE RESULT</span>
+                    <h2 class="section-title">Your search.<br>Your shortlist.</h2>
+                </div>
+
+                <div class="results-grid">
+                    <div class="result-card featured">
+                        <div class="result-card-top">
+                            <span class="badge-match">01 — BEST MATCH</span>
+                            <span class="score-tag">94% MATCH</span>
+                        </div>
+                        <div class="result-card-mid">
+                            <h3>YT Capra</h3>
+                            <div class="bike-price">€2,799</div>
+                            <p>“Excellent fit for an aggressive enduro rider looking for downhill performance and strong components.”</p>
+                        </div>
+                        <div class="result-tags">
+                            <span>✓ Suspension</span>
+                            <span>✓ Brakes</span>
+                            <span>✓ Budget</span>
+                        </div>
+                        <div class="result-card-bot">
+                            <div class="verdict-stars">★★★★★</div>
+                            <p class="verdict-text">“This is the one we'd choose.”</p>
+                        </div>
+                    </div>
+
+                    <div class="result-card">
+                        <div class="result-card-top">
+                            <span class="badge-match">02 — SECOND CHOICE</span>
+                            <span class="score-tag">91% MATCH</span>
+                        </div>
+                        <div class="result-card-mid">
+                            <h3>Canyon Strive</h3>
+                            <div class="bike-price">€2,699</div>
+                            <p>“A strong all-round option with an excellent balance of climbing and descending.”</p>
+                        </div>
+                    </div>
+
+                    <div class="result-card">
+                        <div class="result-card-top">
+                            <span class="badge-match">03 — THIRD CHOICE</span>
+                            <span class="score-tag">88% MATCH</span>
+                        </div>
+                        <div class="result-card-mid">
+                            <h3>Specialized Enduro</h3>
+                            <div class="bike-price">€2,899</div>
+                            <p>“A proven choice for riders who prioritise confidence and downhill capability.”</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="disclaimer-text">“Example results only. Match scores are RideFound's own scoring system. RideFound is not affiliated with any bike manufacturer.”</p>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="final-cta-section">
+            <div class="container text-center">
+                <h2 class="cta-headline">Your perfect bike<br><span class="highlight">is out there.</span></h2>
+                <p class="cta-sub">Let us find it.</p>
+                <div style="margin-top: 30px;">
+                    <a href="#finder" class="btn btn-primary btn-lg">Start my search →</a>
+                </div>
+                
+                <div class="contact-buttons-wrapper">
+                    <a href="mailto:YOUR_EMAIL_HERE" class="btn btn-secondary">Email RideFound</a>
+                    <a href="https://wa.me/YOUR_WHATSAPP_NUMBER_HERE" target="_blank" class="btn btn-secondary">WhatsApp RideFound</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo">
+                    <span class="logo-ride">RIDE</span><span class="logo-found">FOUND</span>
+                </a>
+                <p class="footer-tagline">“Find your perfect bike, without the hassle.”</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#finder">Find my bike</a></li>
+                    <li><a href="#how-it-works">How it works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Notice</h4>
+                <p class="footer-notice">RideFound is an independent bike consultancy service, not a retailer.</p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 RideFound. Built for riders.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
