@@ -1,446 +1,1624 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RideFound — Find your perfect mountain bike, without the hassle.</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RideFound — Your next MTB. Found.</title>
+  <meta name="description" content="RideFound finds the right mountain bike for your riding, budget and requirements.">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    :root {
+      --black: #050608;
+      --dark: #0a0d11;
+      --card: #10141a;
+      --card2: #151a21;
+      --white: #f5f7fa;
+      --muted: #929aa5;
+      --blue: #12a8ff;
+      --blue-dark: #0784d1;
+      --border: rgba(255,255,255,0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 76px;
+      z-index: 100;
+      background: rgba(5,6,8,0.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      color: #b5bdc7;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-button {
+      background: var(--blue);
+      color: #00101a;
+      padding: 12px 17px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .nav-button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* BUTTONS */
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      padding: 15px 21px;
+      font-weight: 800;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .button-blue {
+      background: var(--blue);
+      color: #00101a;
+    }
+
+    .button-blue:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(18,168,255,0.2);
+    }
+
+    .button-outline {
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.03);
+      color: white;
+    }
+
+    .button-outline:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 850px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(5,6,8,1) 0%,
+          rgba(5,6,8,0.91) 30%,
+          rgba(5,6,8,0.55) 58%,
+          rgba(5,6,8,0.72) 100%
+        ),
+        linear-gradient(
+          0deg,
+          var(--black),
+          transparent 30%
+        ),
+        url("https://images.unsplash.com/photo-1544191696-15693072c0a8?auto=format&fit=crop&w=2200&q=90")
+        center / cover;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      position: relative;
+      z-index: 2;
+      padding-top: 70px;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 17px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--blue);
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .hero h1 {
+      font-size: clamp(52px, 8vw, 94px);
+      line-height: 0.93;
+      letter-spacing: -5px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero-description {
+      max-width: 620px;
+      color: #c2c8cf;
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 110px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 0.98;
+      letter-spacing: -3px;
+    }
+
+    .section-heading p {
+      max-width: 400px;
+      color: var(--muted);
+    }
+
+    /* HOW IT WORKS */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+    }
+
+    .step {
+      padding: 31px;
+      min-height: 235px;
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      transition: 0.25s;
+    }
+
+    .step:last-child {
+      border-right: none;
+    }
+
+    .step:hover {
+      background: var(--card2);
+      transform: translateY(-3px);
+    }
+
+    .step-number {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .step h3 {
+      margin-top: 58px;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* FINDER */
+
+    .finder {
+      background:
+        radial-gradient(circle at 90% 10%, rgba(18,168,255,0.1), transparent 35%),
+        var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: clamp(25px, 5vw, 52px);
+    }
+
+    .progress {
+      height: 5px;
+      background: #1b2027;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 38px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 10%;
+      background: var(--blue);
+      transition: 0.3s;
+    }
+
+    .question-number {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .question {
+      font-size: clamp(30px, 4vw, 47px);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 30px;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .option {
+      padding: 19px;
+      text-align: left;
+      border: 1px solid var(--border);
+      background: #0b0e13;
+      color: white;
+      border-radius: 13px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .option:hover {
+      border-color: rgba(18,168,255,0.55);
+      transform: translateY(-2px);
+    }
+
+    .option.selected {
+      border-color: var(--blue);
+      background: rgba(18,168,255,0.09);
+    }
+
+    .field {
+      width: 100%;
+      padding: 18px;
+      border-radius: 13px;
+      border: 1px solid var(--border);
+      background: #0b0e13;
+      color: white;
+      outline: none;
+    }
+
+    .field:focus {
+      border-color: var(--blue);
+    }
+
+    textarea.field {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .finder-controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* PRICING */
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 20px;
+    }
+
+    .pricing-card,
+    .pricing-table {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 23px;
+      padding: 35px;
+    }
+
+    .price {
+      font-size: 70px;
+      font-weight: 900;
+      letter-spacing: -5px;
+      margin: 7px 0;
+    }
+
+    .price-description {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .included {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .included div {
+      color: #c8ced6;
+      font-size: 14px;
+    }
+
+    .included div::before {
+      content: "✓";
+      color: var(--blue);
+      font-weight: 900;
+      margin-right: 10px;
+    }
+
+    .pricing-table h3 {
+      font-size: 23px;
+      margin-bottom: 8px;
+    }
+
+    .pricing-table p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .price-row:last-child {
+      border-bottom: none;
+    }
+
+    .price-row span:first-child {
+      color: #c6ccd3;
+    }
+
+    .price-row strong {
+      color: var(--blue);
+    }
+
+    /* WHY */
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .why-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 29px;
+    }
+
+    .why-card h3 {
+      margin-top: 65px;
+      margin-bottom: 9px;
+      font-size: 18px;
+    }
+
+    .why-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CTA */
+
+    .big-cta {
+      text-align: center;
+      padding: 125px 0;
+      background:
+        radial-gradient(circle at center, rgba(18,168,255,0.12), transparent 45%);
+    }
+
+    .big-cta h2 {
+      font-size: clamp(45px, 7vw, 85px);
+      line-height: 0.92;
+      letter-spacing: -5px;
+      text-transform: uppercase;
+    }
+
+    .big-cta h2 span {
+      color: var(--blue);
+    }
+
+    .big-cta p {
+      color: var(--muted);
+      margin: 22px 0 28px;
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 34px;
+    }
+
+    .contact-card h3 {
+      font-size: 25px;
+      margin-bottom: 9px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 35px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    /* SUCCESS */
+
+    .success {
+      padding: 20px;
+      border: 1px solid var(--blue);
+      border-radius: 15px;
+      background: rgba(18,168,255,0.06);
+    }
+
+    .success h3 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .success p {
+      color: var(--muted);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+      }
+
+      .steps,
+      .why-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .step:nth-child(2) {
+        border-right: none;
+      }
+
+      .step:nth-child(3),
+      .step:nth-child(4) {
+        border-top: 1px solid var(--border);
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .options {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 18px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .container {
+        width: calc(100% - 24px);
+      }
+
+      .hero {
+        min-height: 730px;
+        background-position: 63% center;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .steps,
+      .why-grid,
+      .options,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        border-right: none !important;
+        border-top: none !important;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .step:last-child {
+        border-bottom: none;
+      }
+
+      .pricing-card,
+      .pricing-table,
+      .contact-card {
+        padding: 25px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+
+      .hero-buttons .button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <!-- NAVIGATION -->
-    <header id="site-header">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <span class="logo-ride">RIDE</span><span class="logo-found">FOUND</span>
-            </a>
-            
-            <nav class="desktop-nav">
-                <a href="#hero">Home</a>
-                <a href="#how-it-works">How it works</a>
-                <a href="#finder">MTB Finder</a>
-                <a href="#pricing">Pricing</a>
-            </nav>
+<nav>
+  <div class="container nav-inner">
+    <a href="#" class="logo">RIDE<span>FOUND</span></a>
 
-            <div class="nav-actions">
-                <a href="#finder" class="btn btn-primary btn-sm">Find my bike →</a>
-                <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#finder">MTB Finder</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <a href="#finder" class="nav-button">Find my bike →</a>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        Your next MTB. Found.
+      </div>
+
+      <h1>
+        Find your perfect bike,<br>
+        <span>without the hassle.</span>
+      </h1>
+
+      <p class="hero-description">
+        Tell us what you ride, your budget and exactly what you're looking for.
+        We'll search the market and find the bikes that fit you.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#finder" class="button button-blue">
+          FIND MY PERFECT BIKE →
+        </a>
+
+        <a href="#how" class="button button-outline">
+          HOW IT WORKS
+        </a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<!-- HOW IT WORKS -->
+
+<section id="how">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div>
+        <div class="eyebrow">The process</div>
+
+        <h2>
+          Less searching.<br>
+          More riding.
+        </h2>
+      </div>
+
+      <p>
+        One personal MTB search, built around your riding,
+        budget and requirements.
+      </p>
+
+    </div>
+
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-number">01</div>
+        <h3>TELL US</h3>
+        <p>
+          Tell us your budget, riding style and what you're looking for.
+        </p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">02</div>
+        <h3>WE SEARCH</h3>
+        <p>
+          We search across the new and second-hand market for suitable bikes.
+        </p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">03</div>
+        <h3>WE COMPARE</h3>
+        <p>
+          We compare suspension, geometry, components, specifications and price.
+        </p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">04</div>
+        <h3>YOU CHOOSE</h3>
+        <p>
+          You receive a personalised shortlist with our strongest recommendations.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MTB FINDER -->
+
+<section id="finder">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div>
+        <div class="eyebrow">MTB Finder</div>
+
+        <h2>
+          Tell us what<br>
+          you need.
+        </h2>
+      </div>
+
+      <p>
+        A few quick questions. No endless forms.
+        Your answers shape the search.
+      </p>
+
+    </div>
+
+
+    <div class="finder">
+
+      <div class="progress">
+        <div class="progress-bar" id="progress"></div>
+      </div>
+
+      <form id="finderForm">
+
+        <div class="question-number" id="questionNumber">
+          QUESTION 1 OF 10
         </div>
 
-        <!-- Mobile Menu Overlay -->
-        <div class="mobile-menu" id="mobile-menu">
-            <a href="#hero" class="mobile-link">Home</a>
-            <a href="#how-it-works" class="mobile-link">How it works</a>
-            <a href="#finder" class="mobile-link">MTB Finder</a>
-            <a href="#pricing" class="mobile-link">Pricing</a>
-            <a href="#finder" class="btn btn-primary btn-lg mobile-cta">Find my bike →</a>
-        </div>
-    </header>
+        <h3 class="question" id="question">
+          What's your budget?
+        </h3>
 
-    <main>
-        <!-- HERO SECTION -->
-        <section id="hero" class="hero-section">
-            <div class="hero-grid container">
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        Find your <br>
-                        <span class="highlight">perfect bike.</span>
-                    </h1>
-                    <p class="hero-subtitle">Without the hassle.</p>
-                    <p class="hero-desc">
-                        Tell us how you ride, your budget and exactly what you're looking for. We'll search the market and find the bikes that fit you.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#finder" class="btn btn-primary btn-lg">Find my perfect bike →</a>
-                        <a href="#how-it-works" class="btn btn-secondary btn-lg">See how it works</a>
-                    </div>
-                </div>
+        <div id="answer"></div>
 
-                <div class="hero-visual">
-                    <div class="hero-img-wrapper">
-                        <!-- High quality representation using CSS styling & clean layout -->
-                        <div class="glow-effect"></div>
-                        <div class="hero-bike-card">
-                            <div class="bike-card-header">
-                                <span class="badge-match">YOUR MATCH</span>
-                                <span class="match-score">94%</span>
-                            </div>
-                            <div class="bike-card-body">
-                                <h3>Enduro Pro Build</h3>
-                                <p>“Built around you.”</p>
-                            </div>
-                            <div class="bike-card-footer">
-                                <span class="badge-type">NEW + SECOND-HAND</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="finder-controls">
 
-        <!-- TICKER -->
-        <div class="ticker-section">
-            <div class="ticker-track">
-                <span>TRAIL</span> • 
-                <span>ENDURO</span> • 
-                <span>DOWNHILL</span> • 
-                <span>BIKE PARK</span> • 
-                <span>XC</span> • 
-                <span>YOUR RIDE</span> • 
-                <span>TRAIL</span> • 
-                <span>ENDURO</span> • 
-                <span>DOWNHILL</span> • 
-                <span>BIKE PARK</span> • 
-                <span>XC</span> • 
-                <span>YOUR RIDE</span>
-            </div>
+          <button
+            type="button"
+            class="button button-outline hidden"
+            id="backButton">
+            ← Back
+          </button>
+
+          <button
+            type="button"
+            class="button button-blue"
+            id="nextButton">
+            Continue →
+          </button>
+
         </div>
 
-        <!-- HOW IT WORKS -->
-        <section id="how-it-works" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Less searching.<br>More riding.</h2>
-                    <p class="section-desc">We turn your requirements into a shortlist of bikes worth your time.</p>
-                </div>
+      </form>
 
-                <div class="steps-grid">
-                    <div class="step-card">
-                        <span class="step-num">01</span>
-                        <h3>TELL US</h3>
-                        <p>Budget, riding style, height, location, brands and the details that matter.</p>
-                    </div>
-                    <div class="step-card">
-                        <span class="step-num">02</span>
-                        <h3>WE SEARCH</h3>
-                        <p>We look across the new and second-hand market for bikes that actually fit.</p>
-                    </div>
-                    <div class="step-card">
-                        <span class="step-num">03</span>
-                        <h3>WE COMPARE</h3>
-                        <p>We assess suspension, geometry, components, price and overall suitability.</p>
-                    </div>
-                    <div class="step-card">
-                        <span class="step-num">04</span>
-                        <h3>YOU CHOOSE</h3>
-                        <p>You get a personalised shortlist with our strongest recommendation.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    </div>
 
-        <!-- MTB FINDER -->
-        <section id="finder" class="section finder-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Let's find your bike.</h2>
-                    <p class="section-desc">“A few questions. Then we do the hard part.”</p>
-                </div>
+  </div>
 
-                <div class="finder-container">
-                    <div class="finder-progress-bar">
-                        <div class="progress-track" id="progress-track"></div>
-                    </div>
-                    <div class="finder-step-indicator" id="step-indicator">STEP 1 / 11</div>
+</section>
 
-                    <form id="mtb-finder-form">
-                        <!-- Step 1: Budget -->
-                        <div class="finder-step active" data-step="1">
-                            <h3 class="question-title">What's your budget?</h3>
-                            <div class="options-grid">
-                                <label class="radio-card"><input type="radio" name="budget" value="€1k–€2k"><span>€1k–€2k</span></label>
-                                <label class="radio-card"><input type="radio" name="budget" value="€2k–€3k"><span>€2k–€3k</span></label>
-                                <label class="radio-card"><input type="radio" name="budget" value="€3k–€4k" checked><span>€3k–€4k</span></label>
-                                <label class="radio-card"><input type="radio" name="budget" value="€4k–€5k"><span>€4k–€5k</span></label>
-                                <label class="radio-card"><input type="radio" name="budget" value="€5k–€6k"><span>€5k–€6k</span></label>
-                                <label class="radio-card"><input type="radio" name="budget" value="€6k–€7k"><span>€6k–€7k</span></label>
-                                <label class="radio-card"><input type="radio" name="budget" value="€7k–€8k"><span>€7k–€8k</span></label>
-                                <label class="radio-card"><input type="radio" name="budget" value="€8k–€9k"><span>€8k–€9k</span></label>
-                                <label class="radio-card"><input type="radio" name="budget" value="€9k–€10k"><span>€9k–€10k</span></label>
-                                <label class="radio-card"><input type="radio" name="budget" value="€10k+"><span>€10k+</span></label>
-                            </div>
-                            <div class="custom-input-wrap" style="margin-top: 15px;">
-                                <input type="text" name="custom_budget" placeholder="Or enter custom budget..." class="text-input">
-                            </div>
-                        </div>
 
-                        <!-- Step 2: Riding Style -->
-                        <div class="finder-step" data-step="2">
-                            <h3 class="question-title">What type of riding do you do?</h3>
-                            <p class="question-subtitle">Allow multiple selections.</p>
-                            <div class="options-grid">
-                                <label class="checkbox-card"><input type="checkbox" name="riding_style" value="Trail"><span>Trail</span></label>
-                                <label class="checkbox-card"><input type="checkbox" name="riding_style" value="Enduro"><span>Enduro</span></label>
-                                <label class="checkbox-card"><input type="checkbox" name="riding_style" value="Downhill"><span>Downhill</span></label>
-                                <label class="checkbox-card"><input type="checkbox" name="riding_style" value="XC"><span>XC</span></label>
-                                <label class="checkbox-card"><input type="checkbox" name="riding_style" value="Bike Park"><span>Bike Park</span></label>
-                                <label class="checkbox-card"><input type="checkbox" name="riding_style" value="All-round / Mixed"><span>All-round / Mixed</span></label>
-                            </div>
-                        </div>
+<!-- PRICING -->
 
-                        <!-- Step 3: New or Second-hand -->
-                        <div class="finder-step" data-step="3">
-                            <h3 class="question-title">New or second-hand?</h3>
-                            <div class="options-grid options-grid-3">
-                                <label class="radio-card"><input type="radio" name="condition" value="New"><span>New</span></label>
-                                <label class="radio-card"><input type="radio" name="condition" value="Second-hand"><span>Second-hand</span></label>
-                                <label class="radio-card"><input type="radio" name="condition" value="Either" checked><span>Either</span></label>
-                            </div>
-                        </div>
+<section id="pricing">
 
-                        <!-- Step 4: Location / Riding -->
-                        <div class="finder-step" data-step="4">
-                            <h3 class="question-title">Where do you ride?</h3>
-                            <textarea name="location" rows="4" placeholder="e.g. Mostly Belgian trails with trips to the Alps and bike parks." class="textarea-input"></textarea>
-                        </div>
+  <div class="container">
 
-                        <!-- Step 5: Priorities -->
-                        <div class="finder-step" data-step="5">
-                            <h3 class="question-title">What matters most?</h3>
-                            <p class="question-subtitle">Allow multiple selections.</p>
-                            <div class="options-grid">
-                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Downhill performance"><span>Downhill performance</span></label>
-                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Climbing ability"><span>Climbing ability</span></label>
-                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Weight"><span>Weight</span></label>
-                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Suspension"><span>Suspension</span></label>
-                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Brakes"><span>Brakes</span></label>
-                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Durability"><span>Durability</span></label>
-                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Value for money"><span>Value for money</span></label>
-                                <label class="checkbox-card"><input type="checkbox" name="priorities" value="Components"><span>Components</span></label>
-                            </div>
-                        </div>
+    <div class="section-heading">
 
-                        <!-- Step 6: Height -->
-                        <div class="finder-step" data-step="6">
-                            <h3 class="question-title">What's your height?</h3>
-                            <p class="question-subtitle">This helps determine the appropriate frame size.</p>
-                            <div class="custom-input-wrap">
-                                <input type="number" name="height" placeholder="175" class="text-input" style="max-width: 200px; display: inline-block;"> <span style="color: var(--muted); margin-left: 10px;">cm</span>
-                            </div>
-                        </div>
+      <div>
+        <div class="eyebrow">Simple pricing</div>
 
-                        <!-- Step 7: Experience -->
-                        <div class="finder-step" data-step="7">
-                            <h3 class="question-title">How experienced are you?</h3>
-                            <div class="options-grid options-grid-2">
-                                <label class="radio-card"><input type="radio" name="experience" value="Beginner"><span>Beginner</span></label>
-                                <label class="radio-card"><input type="radio" name="experience" value="Intermediate" checked><span>Intermediate</span></label>
-                                <label class="radio-card"><input type="radio" name="experience" value="Advanced"><span>Advanced</span></label>
-                                <label class="radio-card"><input type="radio" name="experience" value="Expert"><span>Expert</span></label>
-                            </div>
-                        </div>
+        <h2>
+          The bigger<br>
+          the search.
+        </h2>
+      </div>
 
-                        <!-- Step 8: Brands -->
-                        <div class="finder-step" data-step="8">
-                            <h3 class="question-title">What brands are you interested in?</h3>
-                            <p class="question-subtitle">You can leave this blank if you want us to decide completely open-mindedly.</p>
-                            <input type="text" name="preferred_brands" placeholder="e.g. YT, Specialized, Trek, Canyon..." class="text-input">
-                        </div>
+      <p>
+        Your RideFound price scales with the budget of the bike
+        you're asking us to find.
+      </p>
 
-                        <!-- Step 9: Excluded Brands -->
-                        <div class="finder-step" data-step="9">
-                            <h3 class="question-title">Any brands you DON'T want?</h3>
-                            <p class="question-subtitle">Optional.</p>
-                            <input type="text" name="excluded_brands" placeholder="e.g. Brands to avoid..." class="text-input">
-                        </div>
+    </div>
 
-                        <!-- Step 10: Specific Requirements -->
-                        <div class="finder-step" data-step="10">
-                            <h3 class="question-title">Any specific requirements?</h3>
-                            <textarea name="specific_requirements" rows="4" placeholder="e.g. I want a Fox 38, powerful brakes and 29-inch wheels." class="textarea-input"></textarea>
-                        </div>
 
-                        <!-- Step 11: Contact Details -->
-                        <div class="finder-step" data-step="11">
-                            <h3 class="question-title">We've got your search.</h3>
-                            <p class="question-subtitle" style="margin-bottom: 24px;">“Send us your details and we'll start looking.”</p>
-                            
-                            <div class="form-group-stack">
-                                <div class="input-field-group">
-                                    <label>Name</label>
-                                    <input type="text" name="customer_name" required placeholder="Your name" class="text-input">
-                                </div>
-                                <div class="input-field-group">
-                                    <label>Email address</label>
-                                    <input type="email" name="customer_email" required placeholder="you@example.com" class="text-input">
-                                </div>
-                                <div class="input-field-group">
-                                    <label>WhatsApp number (optional)</label>
-                                    <input type="tel" name="customer_whatsapp" placeholder="+32 ..." class="text-input">
-                                </div>
-                            </div>
-                            
-                            <div class="submit-action-wrap" style="margin-top: 30px;">
-                                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Start my search →</button>
-                                <p class="privacy-note">“Your details are only used to respond to your RideFound request.”</p>
-                            </div>
-                        </div>
-                    </form>
+    <div class="pricing-grid">
 
-                    <!-- Success State (Hidden by default) -->
-                    <div id="finder-success" class="finder-success-state" style="display: none;">
-                        <div class="success-icon">✓</div>
-                        <h3 class="question-title">Search received.</h3>
-                        <p class="question-subtitle" style="margin-bottom: 24px;">“Your request is ready. We'll get back to you with your personalised shortlist.”</p>
-                        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                            <a href="mailto:YOUR_EMAIL_HERE?subject=RideFound%20Manual%20Submission" class="btn btn-primary">Email RideFound directly</a>
-                            <a href="https://wa.me/YOUR_WHATSAPP_NUMBER_HERE?text=Hi%20RideFound,%20I%20just%20submitted%20my%20bike%20finder%20form." target="_blank" class="btn btn-secondary">WhatsApp RideFound</a>
-                        </div>
-                    </div>
+      <div class="pricing-card">
 
-                    <!-- Navigation Controls -->
-                    <div class="finder-controls" id="finder-controls">
-                        <button type="button" id="prev-btn" class="btn btn-secondary" style="visibility: hidden;">← Back</button>
-                        <button type="button" id="next-btn" class="btn btn-primary">Next step →</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="eyebrow">MTB FIND</div>
 
-        <!-- PRICING -->
-        <section id="pricing" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Transparent pricing.</h2>
-                    <p class="section-desc">One flat fee for complete market clarity.</p>
-                </div>
+        <div class="price">€50</div>
 
-                <div class="pricing-card-wrapper">
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <span class="pricing-tag">MTB FIND</span>
-                            <div class="price-val">€49</div>
-                            <p class="price-sub">One personalised bike shortlist.</p>
-                        </div>
-                        <ul class="pricing-features">
-                            <li>✓ 3 recommended bikes</li>
-                            <li>✓ New and/or second-hand options</li>
-                            <li>✓ Price comparison</li>
-                            <li>✓ Key specifications</li>
-                            <li>✓ Pros and cons</li>
-                            <li>✓ Why each bike fits you</li>
-                            <li>✓ Our strongest recommendation</li>
-                        </ul>
-                        <div class="pricing-action">
-                            <a href="#finder" class="btn btn-primary btn-lg" style="width: 100%;">Find my bike →</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <p class="price-description">
+          Starting price for your personalised bike search.
+        </p>
 
-        <!-- EXAMPLE RESULTS -->
-        <section class="section example-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="label-small">EXAMPLE RESULT</span>
-                    <h2 class="section-title">Your search.<br>Your shortlist.</h2>
-                </div>
+        <div class="included">
 
-                <div class="results-grid">
-                    <div class="result-card featured">
-                        <div class="result-card-top">
-                            <span class="badge-match">01 — BEST MATCH</span>
-                            <span class="score-tag">94% MATCH</span>
-                        </div>
-                        <div class="result-card-mid">
-                            <h3>YT Capra</h3>
-                            <div class="bike-price">€2,799</div>
-                            <p>“Excellent fit for an aggressive enduro rider looking for downhill performance and strong components.”</p>
-                        </div>
-                        <div class="result-tags">
-                            <span>✓ Suspension</span>
-                            <span>✓ Brakes</span>
-                            <span>✓ Budget</span>
-                        </div>
-                        <div class="result-card-bot">
-                            <div class="verdict-stars">★★★★★</div>
-                            <p class="verdict-text">“This is the one we'd choose.”</p>
-                        </div>
-                    </div>
+          <div>3 recommended bikes</div>
+          <div>New and/or second-hand options</div>
+          <div>Price comparison</div>
+          <div>Key specifications</div>
+          <div>Pros and cons</div>
+          <div>Why each bike fits</div>
+          <div>Our strongest recommendation</div>
 
-                    <div class="result-card">
-                        <div class="result-card-top">
-                            <span class="badge-match">02 — SECOND CHOICE</span>
-                            <span class="score-tag">91% MATCH</span>
-                        </div>
-                        <div class="result-card-mid">
-                            <h3>Canyon Strive</h3>
-                            <div class="bike-price">€2,699</div>
-                            <p>“A strong all-round option with an excellent balance of climbing and descending.”</p>
-                        </div>
-                    </div>
-
-                    <div class="result-card">
-                        <div class="result-card-top">
-                            <span class="badge-match">03 — THIRD CHOICE</span>
-                            <span class="score-tag">88% MATCH</span>
-                        </div>
-                        <div class="result-card-mid">
-                            <h3>Specialized Enduro</h3>
-                            <div class="bike-price">€2,899</div>
-                            <p>“A proven choice for riders who prioritise confidence and downhill capability.”</p>
-                        </div>
-                    </div>
-                </div>
-                <p class="disclaimer-text">“Example results only. Match scores are RideFound's own scoring system. RideFound is not affiliated with any bike manufacturer.”</p>
-            </div>
-        </section>
-
-        <!-- FINAL CTA -->
-        <section class="final-cta-section">
-            <div class="container text-center">
-                <h2 class="cta-headline">Your perfect bike<br><span class="highlight">is out there.</span></h2>
-                <p class="cta-sub">Let us find it.</p>
-                <div style="margin-top: 30px;">
-                    <a href="#finder" class="btn btn-primary btn-lg">Start my search →</a>
-                </div>
-                
-                <div class="contact-buttons-wrapper">
-                    <a href="mailto:YOUR_EMAIL_HERE" class="btn btn-secondary">Email RideFound</a>
-                    <a href="https://wa.me/YOUR_WHATSAPP_NUMBER_HERE" target="_blank" class="btn btn-secondary">WhatsApp RideFound</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <a href="#" class="logo">
-                    <span class="logo-ride">RIDE</span><span class="logo-found">FOUND</span>
-                </a>
-                <p class="footer-tagline">“Find your perfect bike, without the hassle.”</p>
-            </div>
-            <div class="footer-col">
-                <h4>Navigation</h4>
-                <ul class="footer-links">
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#finder">Find my bike</a></li>
-                    <li><a href="#how-it-works">How it works</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Notice</h4>
-                <p class="footer-notice">RideFound is an independent bike consultancy service, not a retailer.</p>
-            </div>
         </div>
-        <div class="container footer-bottom">
-            <p>© 2026 RideFound. Built for riders.</p>
-        </div>
-    </footer>
 
-    <script src="script.js"></script>
+        <a href="#finder" class="button button-blue">
+          FIND MY BIKE →
+        </a>
+
+      </div>
+
+
+      <div class="pricing-table">
+
+        <h3>Search pricing</h3>
+
+        <p>
+          Starting at €50, increasing by €25 for each
+          additional €1,000 of bike budget.
+        </p>
+
+        <div class="price-row">
+          <span>€1k–€2k bike budget</span>
+          <strong>€50</strong>
+        </div>
+
+        <div class="price-row">
+          <span>€2k–€3k bike budget</span>
+          <strong>€75</strong>
+        </div>
+
+        <div class="price-row">
+          <span>€3k–€4k bike budget</span>
+          <strong>€100</strong>
+        </div>
+
+        <div class="price-row">
+          <span>€4k–€5k bike budget</span>
+          <strong>€125</strong>
+        </div>
+
+        <div class="price-row">
+          <span>€5k–€6k bike budget</span>
+          <strong>€150</strong>
+        </div>
+
+        <div class="price-row">
+          <span>€6k–€7k bike budget</span>
+          <strong>€175</strong>
+        </div>
+
+        <div class="price-row">
+          <span>€7k–€8k bike budget</span>
+          <strong>€200</strong>
+        </div>
+
+        <div class="price-row">
+          <span>€8k–€9k bike budget</span>
+          <strong>€225</strong>
+        </div>
+
+        <div class="price-row">
+          <span>€9k–€10k bike budget</span>
+          <strong>€250</strong>
+        </div>
+
+        <div class="price-row">
+          <span>€10k+</span>
+          <strong>€275+</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- WHY RIDEFOUND -->
+
+<section>
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div>
+        <div class="eyebrow">Why RideFound</div>
+
+        <h2>
+          Buy with<br>
+          confidence.
+        </h2>
+      </div>
+
+    </div>
+
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="step-number">01</div>
+
+        <h3>SAVE HOURS</h3>
+
+        <p>
+          Stop scrolling through hundreds of bike listings.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <div class="step-number">02</div>
+
+        <h3>LOOK DEEPER</h3>
+
+        <p>
+          We look beyond the brand name and analyse the actual bike.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <div class="step-number">03</div>
+
+        <h3>BUILT AROUND YOU</h3>
+
+        <p>
+          Your riding, your budget and your requirements.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <div class="step-number">04</div>
+
+        <h3>NEW OR USED</h3>
+
+        <p>
+          We can search both markets for the right option.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="big-cta">
+
+  <div class="container">
+
+    <div class="eyebrow">RideFound</div>
+
+    <h2>
+      Your perfect bike<br>
+      <span>is out there.</span>
+    </h2>
+
+    <p>
+      Let us find it.
+    </p>
+
+    <a href="#finder" class="button button-blue">
+      START MY SEARCH →
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div>
+        <div class="eyebrow">Contact</div>
+
+        <h2>
+          Have a question?
+        </h2>
+      </div>
+
+      <p>
+        Talk to us directly. RideFound is built to feel
+        personal, not corporate.
+      </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+      <div class="contact-card">
+
+        <h3>EMAIL US</h3>
+
+        <p>
+          Ask a question about the service or your search.
+        </p>
+
+        <a
+          href="mailto:hello@ride-found.com"
+          class="button button-outline">
+          EMAIL US →
+        </a>
+
+      </div>
+
+
+      <div class="contact-card">
+
+        <h3>WHATSAPP US</h3>
+
+        <p>
+          Prefer a quick conversation? Get in touch directly.
+        </p>
+
+        <a
+          href="#"
+          class="button button-outline"
+          onclick="alert('Add your WhatsApp number here before launching this button.')">
+          WHATSAPP US →
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="container footer-inner">
+
+    <div>
+      <div class="logo">
+        RIDE<span>FOUND</span>
+      </div>
+
+      <div style="margin-top:7px;">
+        Find your perfect bike, without the hassle.
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#finder">Find My Bike</a>
+      <a href="#how">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+const questions = [
+
+  {
+    question: "What's your budget?",
+    type: "options",
+    options: [
+      "€1k–€2k",
+      "€2k–€3k",
+      "€3k–€4k",
+      "€4k–€5k",
+      "€5k–€6k",
+      "€6k–€7k",
+      "€7k–€8k",
+      "€8k–€9k",
+      "€9k–€10k",
+      "€10k+"
+    ]
+  },
+
+  {
+    question: "What type of riding do you do?",
+    type: "multi",
+    options: [
+      "Trail",
+      "Enduro",
+      "Downhill",
+      "XC",
+      "Bike Park",
+      "All-round / Mixed"
+    ]
+  },
+
+  {
+    question: "New or second-hand?",
+    type: "options",
+    options: [
+      "New",
+      "Second-hand",
+      "Either"
+    ]
+  },
+
+  {
+    question: "Where do you ride?",
+    type: "textarea",
+    placeholder:
+      "Mostly local trails with trips to the Alps and bike parks."
+  },
+
+  {
+    question: "What matters most?",
+    type: "multi",
+    options: [
+      "Downhill performance",
+      "Climbing ability",
+      "Weight",
+      "Suspension",
+      "Brakes",
+      "Durability",
+      "Value for money",
+      "Components"
+    ]
+  },
+
+  {
+    question: "What's your height?",
+    type: "text",
+    placeholder: "e.g. 175 cm"
+  },
+
+  {
+    question: "How experienced are you?",
+    type: "options",
+    options: [
+      "Beginner",
+      "Intermediate",
+      "Advanced",
+      "Expert"
+    ]
+  },
+
+  {
+    question: "What brand are you looking for?",
+    type: "text",
+    placeholder: "YT, Specialized, Trek, Canyon..."
+  },
+
+  {
+    question: "Are there any brands you DON'T want?",
+    type: "text",
+    placeholder: "Optional"
+  },
+
+  {
+    question: "Do you have any specific requirements?",
+    type: "textarea",
+    placeholder:
+      "I want a Fox 38, powerful brakes and 29-inch wheels."
+  }
+
+];
+
+
+let currentQuestion = 0;
+let answers = {};
+
+
+const questionNumber =
+  document.getElementById("questionNumber");
+
+const question =
+  document.getElementById("question");
+
+const answer =
+  document.getElementById("answer");
+
+const progress =
+  document.getElementById("progress");
+
+const nextButton =
+  document.getElementById("nextButton");
+
+const backButton =
+  document.getElementById("backButton");
+
+
+function renderQuestion() {
+
+  const current = questions[currentQuestion];
+
+  questionNumber.textContent =
+    `QUESTION ${currentQuestion + 1} OF ${questions.length}`;
+
+  question.textContent =
+    current.question;
+
+  progress.style.width =
+    `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+  backButton.classList.toggle(
+    "hidden",
+    currentQuestion === 0
+  );
+
+
+  if (
+    current.type === "options" ||
+    current.type === "multi"
+  ) {
+
+    const previous =
+      answers[currentQuestion] || [];
+
+    answer.innerHTML = `
+      <div class="options">
+        ${current.options.map(option => `
+          <button
+            type="button"
+            class="option ${
+              previous.includes(option)
+              ? "selected"
+              : ""
+            }"
+            data-value="${option}">
+            ${option}
+          </button>
+        `).join("")}
+      </div>
+    `;
+
+
+    document
+      .querySelectorAll(".option")
+      .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+          const value =
+            button.dataset.value;
+
+
+          if (current.type === "multi") {
+
+            let selected =
+              answers[currentQuestion] || [];
+
+            if (selected.includes(value)) {
+
+              selected =
+                selected.filter(
+                  item => item !== value
+                );
+
+            } else {
+
+              selected.push(value);
+
+            }
+
+            answers[currentQuestion] =
+              selected;
+
+            button.classList.toggle(
+              "selected"
+            );
+
+          } else {
+
+            answers[currentQuestion] =
+              [value];
+
+            document
+              .querySelectorAll(".option")
+              .forEach(option =>
+                option.classList.remove(
+                  "selected"
+                )
+              );
+
+            button.classList.add(
+              "selected"
+            );
+
+          }
+
+        });
+
+      });
+
+  } else {
+
+    if (current.type === "textarea") {
+
+      answer.innerHTML = `
+        <textarea
+          class="field"
+          placeholder="${current.placeholder}">
+          ${answers[currentQuestion] || ""}
+        </textarea>
+      `;
+
+    } else {
+
+      answer.innerHTML = `
+        <input
+          class="field"
+          placeholder="${current.placeholder}"
+          value="${answers[currentQuestion] || ""}">
+      `;
+
+    }
+
+  }
+
+}
+
+
+function saveField() {
+
+  const field =
+    answer.querySelector(".field");
+
+  if (field) {
+
+    answers[currentQuestion] =
+      field.value.trim();
+
+  }
+
+}
+
+
+nextButton.addEventListener("click", () => {
+
+  saveField();
+
+
+  if (
+    currentQuestion <
+    questions.length - 1
+  ) {
+
+    currentQuestion++;
+
+    renderQuestion();
+
+  } else {
+
+    showFinalForm();
+
+  }
+
+});
+
+
+backButton.addEventListener("click", () => {
+
+  saveField();
+
+  if (currentQuestion > 0) {
+
+    currentQuestion--;
+
+    renderQuestion();
+
+  }
+
+});
+
+
+function showFinalForm() {
+
+  const budget =
+    answers[0]?.[0] || "your selected budget";
+
+  document.getElementById("finderForm").innerHTML = `
+
+    <div class="eyebrow">
+      Search ready
+    </div>
+
+    <h3 class="question">
+      We've got your search.
+    </h3>
+
+    <p style="color:var(--muted);max-width:650px;">
+      Based on your answers, your RideFound search
+      is ready to send.
+    </p>
+
+    <div
+      style="
+        margin-top:22px;
+        padding:18px;
+        border:1px solid var(--border);
+        border-radius:14px;
+        background:#0b0e13;
+      ">
+
+      <strong>Selected budget:</strong>
+      ${budget}
+
+    </div>
+
+
+    <div
+      style="
+        display:grid;
+        gap:12px;
+        margin-top:20px;
+        max-width:620px;
+      ">
+
+      <input
+        class="field"
+        id="name"
+        placeholder="Name">
+
+      <input
+        class="field"
+        id="email"
+        type="email"
+        placeholder="Email">
+
+      <input
+        class="field"
+        id="whatsapp"
+        placeholder="WhatsApp number (optional)">
+
+      <button
+        type="button"
+        class="button button-blue"
+        id="submitSearch">
+
+        START MY SEARCH →
+
+      </button>
+
+    </div>
+
+  `;
+
+
+  document
+    .getElementById("submitSearch")
+    .addEventListener(
+      "click",
+      submitSearch
+    );
+
+}
+
+
+function submitSearch() {
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const email =
+    document.getElementById("email").value.trim();
+
+
+  if (!name || !email) {
+
+    alert(
+      "Please enter your name and email."
+    );
+
+    return;
+
+  }
+
+
+  document.getElementById("finderForm").innerHTML = `
+
+    <div class="success">
+
+      <h3>
+        Thanks, ${name}.
+      </h3>
+
+      <p>
+        Your RideFound search has been received.
+        We'll start looking for your perfect bike.
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+
+renderQuestion();
+
+</script>
+
 </body>
 </html>
