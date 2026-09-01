@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,11 +40,6 @@ body{
     color:var(--white);
     line-height:1.6;
     overflow-x:hidden;
-}
-
-body::selection{
-    background:var(--blue);
-    color:white;
 }
 
 a{
@@ -99,7 +93,7 @@ nav{
     right:0;
     z-index:1000;
     height:76px;
-    background:rgba(5,7,10,.86);
+    background:rgba(5,7,10,.88);
     backdrop-filter:blur(20px);
     border-bottom:1px solid var(--border);
 }
@@ -225,7 +219,7 @@ section{
     gap:13px;
 }
 
-/* ================= HOME ================= */
+/* ================= HOME HERO ================= */
 
 .hero{
     min-height:calc(100vh - 76px);
@@ -233,11 +227,14 @@ section{
     align-items:center;
     position:relative;
     overflow:hidden;
+
     background:
-        linear-gradient(90deg,
-        rgba(4,6,9,.98) 0%,
-        rgba(4,6,9,.85) 38%,
-        rgba(4,6,9,.25) 100%),
+        linear-gradient(
+            90deg,
+            rgba(4,6,9,.98) 0%,
+            rgba(4,6,9,.85) 38%,
+            rgba(4,6,9,.25) 100%
+        ),
         url("https://raw.githubusercontent.com/RideFoundFounder/ridefound-website/main/Capture%20d%27%C3%A9cran%202026-08-31%20210441.png")
         center/cover no-repeat;
 }
@@ -298,7 +295,7 @@ section{
     margin-bottom:35px;
 }
 
-/* HOME INTRO */
+/* ================= INTRO ================= */
 
 .intro-grid{
     display:grid;
@@ -314,12 +311,84 @@ section{
     font-weight:1000;
 }
 
-/* ================= CARDS ================= */
+/* ================= BIKE CATEGORY CARDS ================= */
 
-.cards{
+.bike-category-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:20px;
+    margin-top:50px;
+}
+
+.bike-category-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:22px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.bike-category-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(25,167,255,.5);
+    box-shadow:0 20px 50px rgba(0,0,0,.3);
+}
+
+.category-image{
+    width:100%;
+    height:210px;
+    overflow:hidden;
+    background:#090d13;
+}
+
+.category-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:.4s;
+}
+
+.bike-category-card:hover .category-image img{
+    transform:scale(1.04);
+}
+
+.category-content{
+    padding:25px;
+}
+
+.card-number{
+    color:var(--blue);
+    font-size:12px;
+    font-weight:900;
+    margin-bottom:16px;
+}
+
+.category-content h3{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.category-content p{
+    color:var(--muted);
+    line-height:1.7;
+}
+
+.explore{
+    display:block;
+    margin-top:20px;
+    color:var(--blue);
+    font-weight:900;
+    font-size:12px;
+}
+
+/* ================= HOW ================= */
+
+.steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
     margin-top:50px;
 }
 
@@ -336,13 +405,6 @@ section{
     border-color:rgba(25,167,255,.45);
 }
 
-.card-number{
-    color:var(--blue);
-    font-size:12px;
-    font-weight:900;
-    margin-bottom:35px;
-}
-
 .card h3{
     font-size:22px;
     margin-bottom:12px;
@@ -352,16 +414,7 @@ section{
     color:var(--muted);
 }
 
-/* ================= HOW ================= */
-
-.steps{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-    margin-top:50px;
-}
-
-/* ================= BIKE TYPE ================= */
+/* ================= BIKE TYPE PAGES ================= */
 
 .type-hero{
     min-height:520px;
@@ -375,9 +428,12 @@ section{
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(0deg,
-        rgba(5,7,10,1),
-        rgba(5,7,10,.2) 75%);
+    background:
+        linear-gradient(
+            0deg,
+            rgba(5,7,10,1),
+            rgba(5,7,10,.15) 75%
+        );
 }
 
 .type-hero-content{
@@ -402,19 +458,19 @@ section{
 
 .dh-hero{
     background:
-        url("https://raw.githubusercontent.com/RideFoundFounder/ridefound-website/main/Capture%20d%27%C3%A9cran%202026-08-31%20210441.png")
+        url("https://raw.githubusercontent.com/RideFoundFounder/ridefound-website/main/Capture%20d%27%C3%A9cran%202026-08-31%20203606.png")
         center/cover no-repeat;
 }
 
 .enduro-hero{
     background:
-        url("https://raw.githubusercontent.com/RideFoundFounder/ridefound-website/main/Capture%20d%27%C3%A9cran%202026-08-31%20210748.png")
+        url("https://raw.githubusercontent.com/RideFoundFounder/ridefound-website/main/Capture%20d%27%C3%A9cran%202026-08-31%20204059.png")
         center/cover no-repeat;
 }
 
 .trail-hero{
     background:
-        url("https://raw.githubusercontent.com/RideFoundFounder/ridefound-website/main/Capture%20d%27%C3%A9cran%202026-08-31%20211042.png")
+        url("https://raw.githubusercontent.com/RideFoundFounder/ridefound-website/main/Capture%20d%27%C3%A9cran%202026-08-31%20204159.png")
         center/cover no-repeat;
 }
 
@@ -465,8 +521,16 @@ section{
 
 .finder-page{
     background:
-        radial-gradient(circle at 10% 20%,rgba(25,167,255,.09),transparent 30%),
-        radial-gradient(circle at 90% 80%,rgba(129,92,255,.09),transparent 30%);
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(25,167,255,.09),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(129,92,255,.09),
+            transparent 30%
+        );
 }
 
 .finder{
@@ -496,7 +560,7 @@ section{
 
 .progress-bar{
     height:100%;
-    width:12.5%;
+    width:10%;
     background:linear-gradient(90deg,var(--blue),var(--purple));
     transition:.3s;
 }
@@ -539,6 +603,7 @@ section{
     padding:16px;
     transition:.2s;
     color:#dce1e9;
+    user-select:none;
 }
 
 .option:hover{
@@ -579,7 +644,33 @@ textarea{
     gap:12px;
 }
 
-/* ================= PRICE ================= */
+/* ================= FINAL FINDER ================= */
+
+.final-screen{
+    display:none;
+    text-align:center;
+}
+
+.final-screen.active{
+    display:block;
+    animation:fade .4s ease;
+}
+
+.final-icon{
+    width:75px;
+    height:75px;
+    margin:0 auto 25px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(65,230,162,.12);
+    border:1px solid rgba(65,230,162,.3);
+    color:var(--green);
+    font-size:32px;
+}
+
+/* ================= PRICING ================= */
 
 .price-grid{
     display:grid;
@@ -642,7 +733,11 @@ textarea{
     border-radius:28px;
     border:1px solid var(--border);
     background:
-        radial-gradient(circle at center,rgba(25,167,255,.13),transparent 60%),
+        radial-gradient(
+            circle at center,
+            rgba(25,167,255,.13),
+            transparent 60%
+        ),
         var(--card);
 }
 
@@ -679,6 +774,10 @@ footer{
     font-size:13px;
 }
 
+.footer-links a:hover{
+    color:white;
+}
+
 .copyright{
     color:#5f6877;
     font-size:12px;
@@ -710,7 +809,7 @@ footer{
         border-bottom:1px solid var(--border);
     }
 
-    .cards,
+    .bike-category-grid,
     .steps,
     .price-grid{
         grid-template-columns:1fr;
@@ -734,8 +833,13 @@ footer{
 
     .hero{
         min-height:calc(100vh - 76px);
+
         background:
-            linear-gradient(180deg,rgba(5,7,10,.5),rgba(5,7,10,.97)),
+            linear-gradient(
+                180deg,
+                rgba(5,7,10,.5),
+                rgba(5,7,10,.97)
+            ),
             url("https://raw.githubusercontent.com/RideFoundFounder/ridefound-website/main/Capture%20d%27%C3%A9cran%202026-08-31%20210441.png")
             center/cover no-repeat;
     }
@@ -776,6 +880,10 @@ footer{
         letter-spacing:-3px;
     }
 
+    .category-image{
+        height:190px;
+    }
+
     .footer-inner{
         flex-direction:column;
     }
@@ -785,7 +893,6 @@ footer{
 </head>
 
 <body>
-
 
 <!-- ================= NAVIGATION ================= -->
 
@@ -799,17 +906,29 @@ RID<span>E</span>FOUND
 
 <div class="nav-links" id="navLinks">
 
-<a href="#" onclick="showPage('home');return false;">Home</a>
+<a href="#" onclick="showPage('home');return false;">
+Home
+</a>
 
-<a href="#" onclick="showPage('how');return false;">How It Works</a>
+<a href="#" onclick="showPage('how');return false;">
+How It Works
+</a>
 
-<a href="#" onclick="showPage('downhill');return false;">Downhill</a>
+<a href="#" onclick="showPage('downhill');return false;">
+Downhill
+</a>
 
-<a href="#" onclick="showPage('enduro');return false;">Enduro</a>
+<a href="#" onclick="showPage('enduro');return false;">
+Enduro
+</a>
 
-<a href="#" onclick="showPage('trail');return false;">Trail</a>
+<a href="#" onclick="showPage('trail');return false;">
+Trail
+</a>
 
-<a href="#" onclick="showPage('pricing');return false;">Pricing</a>
+<a href="#" onclick="showPage('pricing');return false;">
+Pricing
+</a>
 
 </div>
 
@@ -817,7 +936,9 @@ RID<span>E</span>FOUND
 FIND MY BIKE →
 </a>
 
-<button class="menu" onclick="toggleMenu()">☰</button>
+<button class="menu" onclick="toggleMenu()">
+☰
+</button>
 
 </div>
 
@@ -864,13 +985,17 @@ HOW IT WORKS
 </section>
 
 
+<!-- INTRO -->
+
 <section>
 
 <div class="container intro-grid">
 
 <div>
 
-<div class="section-label">THE IDEA</div>
+<div class="section-label">
+THE IDEA
+</div>
 
 <h2 class="section-title">
 Stop searching.<br>
@@ -900,11 +1025,15 @@ START MY SEARCH →
 </section>
 
 
+<!-- BIKE TYPES -->
+
 <section>
 
 <div class="container">
 
-<div class="section-label">CHOOSE YOUR RIDE</div>
+<div class="section-label">
+CHOOSE YOUR RIDE
+</div>
 
 <h2 class="section-title">
 What kind of MTB are you looking for?
@@ -915,65 +1044,114 @@ Understanding the difference between MTB categories is one of the
 most important parts of choosing the right bike.
 </p>
 
-<div class="cards">
+
+<div class="bike-category-grid">
 
 
-<div class="card" onclick="showPage('downhill')" style="cursor:pointer">
+<!-- DOWNHILL -->
 
-<div class="card-number">01 — DH</div>
+<div class="bike-category-card"
+onclick="showPage('downhill')">
 
-<h3>DOWNHILL</h3>
+<div class="category-image">
+
+<img
+src="https://raw.githubusercontent.com/RideFoundFounder/ridefound-website/main/Capture%20d%27%C3%A9cran%202026-08-31%20203606.png"
+alt="Downhill mountain biker">
+
+</div>
+
+<div class="category-content">
+
+<div class="card-number">
+01 — DH
+</div>
+
+<h3>
+DOWNHILL
+</h3>
 
 <p>
-Maximum descending performance for steep tracks, bike parks,
-racing and serious technical terrain.
+Built around descending speed, control and confidence.
 </p>
 
-<br>
-
-<span style="color:var(--blue);font-weight:900;font-size:12px">
+<span class="explore">
 EXPLORE DOWNHILL →
 </span>
 
 </div>
 
+</div>
 
-<div class="card" onclick="showPage('enduro')" style="cursor:pointer">
 
-<div class="card-number">02 — ENDURO</div>
+<!-- ENDURO -->
 
-<h3>ENDURO</h3>
+<div class="bike-category-card"
+onclick="showPage('enduro')">
+
+<div class="category-image">
+
+<img
+src="https://raw.githubusercontent.com/RideFoundFounder/ridefound-website/main/Capture%20d%27%C3%A9cran%202026-08-31%20204059.png"
+alt="Enduro mountain biker">
+
+</div>
+
+<div class="category-content">
+
+<div class="card-number">
+02 — ENDURO
+</div>
+
+<h3>
+ENDURO
+</h3>
 
 <p>
-A balance of climbing ability and aggressive descending performance
-for mountains, technical trails and big riding days.
+Capable bikes for technical climbs and aggressive descents.
 </p>
 
-<br>
-
-<span style="color:var(--blue);font-weight:900;font-size:12px">
+<span class="explore">
 EXPLORE ENDURO →
 </span>
 
 </div>
 
+</div>
 
-<div class="card" onclick="showPage('trail')" style="cursor:pointer">
 
-<div class="card-number">03 — TRAIL</div>
+<!-- TRAIL -->
 
-<h3>TRAIL</h3>
+<div class="bike-category-card"
+onclick="showPage('trail')">
+
+<div class="category-image">
+
+<img
+src="https://raw.githubusercontent.com/RideFoundFounder/ridefound-website/main/Capture%20d%27%C3%A9cran%202026-08-31%20204159.png"
+alt="Trail mountain biker">
+
+</div>
+
+<div class="category-content">
+
+<div class="card-number">
+03 — TRAIL
+</div>
+
+<h3>
+TRAIL
+</h3>
 
 <p>
-Versatile mountain bikes designed for everyday trails, climbs,
-descents and all-round mountain adventures.
+Versatile bikes for all-day adventures, climbs and descents.
 </p>
 
-<br>
-
-<span style="color:var(--blue);font-weight:900;font-size:12px">
+<span class="explore">
 EXPLORE TRAIL →
 </span>
+
+</div>
 
 </div>
 
@@ -995,7 +1173,9 @@ EXPLORE TRAIL →
 
 <div class="container">
 
-<div class="section-label">HOW IT WORKS</div>
+<div class="section-label">
+HOW IT WORKS
+</div>
 
 <h1 class="section-title">
 Bike shopping.<br>
@@ -1003,19 +1183,22 @@ Simplified.
 </h1>
 
 <p class="section-text">
-RideFound is designed to remove the boring part of buying an MTB:
+RideFound removes the boring part of buying an MTB:
 searching through endless listings and comparing specifications.
 </p>
 
 
 <div class="steps">
 
-
 <div class="card">
 
-<div class="card-number">01</div>
+<div class="card-number">
+01
+</div>
 
-<h3>TELL US</h3>
+<h3>
+TELL US
+</h3>
 
 <p>
 Tell us your budget, riding style, experience, location,
@@ -1027,9 +1210,13 @@ preferred brands and anything else that matters to you.
 
 <div class="card">
 
-<div class="card-number">02</div>
+<div class="card-number">
+02
+</div>
 
-<h3>WE SEARCH</h3>
+<h3>
+WE SEARCH
+</h3>
 
 <p>
 We search across the new and second-hand market looking for
@@ -1041,9 +1228,13 @@ bikes that actually match your requirements.
 
 <div class="card">
 
-<div class="card-number">03</div>
+<div class="card-number">
+03
+</div>
 
-<h3>WE COMPARE</h3>
+<h3>
+WE COMPARE
+</h3>
 
 <p>
 We compare components, suspension, geometry, price,
@@ -1055,9 +1246,13 @@ bike category and overall suitability.
 
 <div class="card">
 
-<div class="card-number">04</div>
+<div class="card-number">
+04
+</div>
 
-<h3>YOU CHOOSE</h3>
+<h3>
+YOU CHOOSE
+</h3>
 
 <p>
 You receive a focused shortlist so you can spend less time
@@ -1066,10 +1261,11 @@ searching and more time riding.
 
 </div>
 
-
 </div>
 
+
 <br><br>
+
 
 <div class="contact-box">
 
@@ -1103,12 +1299,16 @@ FIND MY BIKE →
 
 <div class="container type-hero-content">
 
-<div class="section-label">MTB CATEGORY</div>
+<div class="section-label">
+MTB CATEGORY
+</div>
 
-<h1>DOWNHILL</h1>
+<h1>
+DOWNHILL
+</h1>
 
 <div class="bike-name">
-SANTA CRUZ V10
+DH
 </div>
 
 </div>
@@ -1120,10 +1320,12 @@ SANTA CRUZ V10
 
 <div class="container">
 
-<div class="section-label">WHAT IS DOWNHILL?</div>
+<div class="section-label">
+WHAT IS DOWNHILL?
+</div>
 
 <h2 class="section-title">
-Built to go down.
+Built to go down.<br>
 Fast.
 </h2>
 
@@ -1145,7 +1347,7 @@ specifically designed for that environment.
 </p>
 
 <p class="description">
-The biggest compromise is climbing. DH bikes are generally heavy
+The biggest compromise is climbing. DH bikes are generally heavier
 and their geometry and suspension are designed for descending rather
 than efficient uphill pedalling. That means they aren't normally the
 best choice if you want one bike for long everyday rides or trails
@@ -1157,7 +1359,9 @@ where you need to climb for every descent.
 
 <div class="info-box good">
 
-<h3>✓ IDEAL FOR</h3>
+<h3>
+✓ IDEAL FOR
+</h3>
 
 <ul>
 <li>Bike parks</li>
@@ -1175,7 +1379,9 @@ where you need to climb for every descent.
 
 <div class="info-box not-good">
 
-<h3>✕ NOT IDEAL FOR</h3>
+<h3>
+✕ NOT IDEAL FOR
+</h3>
 
 <ul>
 <li>Long climbs</li>
@@ -1211,12 +1417,16 @@ FIND MY BIKE →
 
 <div class="container type-hero-content">
 
-<div class="section-label">MTB CATEGORY</div>
+<div class="section-label">
+MTB CATEGORY
+</div>
 
-<h1>ENDURO</h1>
+<h1>
+ENDURO
+</h1>
 
 <div class="bike-name">
-THE AGGRESSIVE ALL-ROUNDER
+ENDURO
 </div>
 
 </div>
@@ -1228,7 +1438,9 @@ THE AGGRESSIVE ALL-ROUNDER
 
 <div class="container">
 
-<div class="section-label">WHAT IS ENDURO?</div>
+<div class="section-label">
+WHAT IS ENDURO?
+</div>
 
 <h2 class="section-title">
 Climb it.<br>
@@ -1264,7 +1476,9 @@ capable of handling a huge variety of serious mountain terrain.
 
 <div class="info-box good">
 
-<h3>✓ IDEAL FOR</h3>
+<h3>
+✓ IDEAL FOR
+</h3>
 
 <ul>
 <li>Technical climbs and descents</li>
@@ -1282,7 +1496,9 @@ capable of handling a huge variety of serious mountain terrain.
 
 <div class="info-box not-good">
 
-<h3>✕ NOT IDEAL FOR</h3>
+<h3>
+✕ NOT IDEAL FOR
+</h3>
 
 <ul>
 <li>Pure XC racing</li>
@@ -1318,12 +1534,16 @@ FIND MY BIKE →
 
 <div class="container type-hero-content">
 
-<div class="section-label">MTB CATEGORY</div>
+<div class="section-label">
+MTB CATEGORY
+</div>
 
-<h1>TRAIL</h1>
+<h1>
+TRAIL
+</h1>
 
 <div class="bike-name">
-THE EVERYDAY MTB
+TRAIL
 </div>
 
 </div>
@@ -1335,7 +1555,9 @@ THE EVERYDAY MTB
 
 <div class="container">
 
-<div class="section-label">WHAT IS TRAIL?</div>
+<div class="section-label">
+WHAT IS TRAIL?
+</div>
 
 <h2 class="section-title">
 One bike.<br>
@@ -1370,7 +1592,9 @@ rough bike-park tracks, an enduro or DH bike may be better suited.
 
 <div class="info-box good">
 
-<h3>✓ IDEAL FOR</h3>
+<h3>
+✓ IDEAL FOR
+</h3>
 
 <ul>
 <li>Everyday trail riding</li>
@@ -1388,7 +1612,9 @@ rough bike-park tracks, an enduro or DH bike may be better suited.
 
 <div class="info-box not-good">
 
-<h3>✕ NOT IDEAL FOR</h3>
+<h3>
+✕ NOT IDEAL FOR
+</h3>
 
 <ul>
 <li>Serious downhill racing</li>
@@ -1423,7 +1649,9 @@ FIND MY BIKE →
 
 <div class="container">
 
-<div class="section-label">MTB FINDER</div>
+<div class="section-label">
+MTB FINDER
+</div>
 
 <h1 class="section-title">
 Let's find your bike.
@@ -1435,13 +1663,17 @@ the better we can understand what you're looking for.
 </p>
 
 
-<div class="finder">
+<div class="finder" id="finderBox">
 
 <div class="progress-top">
 
-<span id="stepText">Question 1 of 10</span>
+<span id="stepText">
+Question 1 of 10
+</span>
 
-<span id="percent">10%</span>
+<span id="percent">
+10%
+</span>
 
 </div>
 
@@ -1452,11 +1684,13 @@ the better we can understand what you're looking for.
 </div>
 
 
-<!-- 1 -->
+<!-- QUESTION 1 -->
 
 <div class="question active" data-step="1">
 
-<h2>What's your budget?</h2>
+<h2>
+What's your budget?
+</h2>
 
 <div class="options">
 
@@ -1475,16 +1709,22 @@ the better we can understand what you're looking for.
 
 <br>
 
-<input id="customBudget" type="number" placeholder="Or enter a custom budget (€)">
+<input
+id="customBudget"
+type="number"
+placeholder="Or enter a custom budget (€)"
+>
 
 </div>
 
 
-<!-- 2 -->
+<!-- QUESTION 2 -->
 
 <div class="question" data-step="2">
 
-<h2>What type of riding do you do?</h2>
+<h2>
+What type of riding do you do?
+</h2>
 
 <div class="options">
 
@@ -1500,11 +1740,13 @@ the better we can understand what you're looking for.
 </div>
 
 
-<!-- 3 -->
+<!-- QUESTION 3 -->
 
 <div class="question" data-step="3">
 
-<h2>New or second-hand?</h2>
+<h2>
+New or second-hand?
+</h2>
 
 <div class="options">
 
@@ -1517,23 +1759,29 @@ the better we can understand what you're looking for.
 </div>
 
 
-<!-- 4 -->
+<!-- QUESTION 4 -->
 
 <div class="question" data-step="4">
 
-<h2>Where do you ride?</h2>
+<h2>
+Where do you ride?
+</h2>
 
-<textarea id="whereRide"
-placeholder="Mostly local trails with trips to the Alps and bike parks."></textarea>
+<textarea
+id="whereRide"
+placeholder="Mostly local trails with trips to the Alps and bike parks."
+></textarea>
 
 </div>
 
 
-<!-- 5 -->
+<!-- QUESTION 5 -->
 
 <div class="question" data-step="5">
 
-<h2>What matters most?</h2>
+<h2>
+What matters most?
+</h2>
 
 <div class="options">
 
@@ -1551,22 +1799,30 @@ placeholder="Mostly local trails with trips to the Alps and bike parks."></texta
 </div>
 
 
-<!-- 6 -->
+<!-- QUESTION 6 -->
 
 <div class="question" data-step="6">
 
-<h2>What's your height?</h2>
+<h2>
+What's your height?
+</h2>
 
-<input id="height" type="number" placeholder="Height in cm">
+<input
+id="height"
+type="number"
+placeholder="Height in cm"
+>
 
 </div>
 
 
-<!-- 7 -->
+<!-- QUESTION 7 -->
 
 <div class="question" data-step="7">
 
-<h2>How experienced are you?</h2>
+<h2>
+How experienced are you?
+</h2>
 
 <div class="options">
 
@@ -1580,54 +1836,112 @@ placeholder="Mostly local trails with trips to the Alps and bike parks."></texta
 </div>
 
 
-<!-- 8 -->
+<!-- QUESTION 8 -->
 
 <div class="question" data-step="8">
 
-<h2>What brands are you looking for?</h2>
+<h2>
+What brands are you looking for?
+</h2>
 
-<input id="brands" type="text"
-placeholder="YT, Specialized, Trek, Canyon...">
+<input
+id="brands"
+type="text"
+placeholder="YT, Specialized, Trek, Canyon..."
+>
 
 </div>
 
 
-<!-- 9 -->
+<!-- QUESTION 9 -->
 
 <div class="question" data-step="9">
 
-<h2>Are there any brands you DON'T want?</h2>
+<h2>
+Are there any brands you DON'T want?
+</h2>
 
-<input id="avoidBrands" type="text"
-placeholder="Optional">
+<input
+id="avoidBrands"
+type="text"
+placeholder="Optional"
+>
 
 </div>
 
 
-<!-- 10 -->
+<!-- QUESTION 10 -->
 
 <div class="question" data-step="10">
 
-<h2>Any specific requirements?</h2>
+<h2>
+Any specific requirements?
+</h2>
 
-<textarea id="requirements"
-placeholder="I want a Fox 38, powerful brakes and 29-inch wheels."></textarea>
+<textarea
+id="requirements"
+placeholder="I want a Fox 38, powerful brakes and 29-inch wheels."
+></textarea>
 
 </div>
 
 
-<div class="finder-buttons">
+<!-- FINAL SCREEN -->
 
-<button class="btn btn-secondary"
+<div class="final-screen" id="finalScreen">
+
+<div class="final-icon">
+✓
+</div>
+
+<h2>
+WE'VE GOT YOUR SEARCH.
+</h2>
+
+<p class="section-text" style="margin:15px auto 25px;">
+Your RideFound search has been prepared.
+Click below to send your requirements to RideFound.
+</p>
+
+<a
+id="sendEmailButton"
+class="btn btn-primary"
+href="#"
+>
+START MY SEARCH →
+</a>
+
+<br><br>
+
+<button
+class="btn btn-secondary"
+onclick="resetFinder()"
+>
+START AGAIN
+</button>
+
+</div>
+
+
+<div
+class="finder-buttons"
+id="finderButtons"
+>
+
+<button
+class="btn btn-secondary"
 id="backBtn"
 onclick="previousStep()"
-style="display:none">
+style="display:none"
+>
 ← BACK
 </button>
 
-<button class="btn btn-primary"
+<button
+class="btn btn-primary"
 id="nextBtn"
-onclick="nextStep()">
+onclick="nextStep()"
+>
 NEXT →
 </button>
 
@@ -1650,7 +1964,9 @@ NEXT →
 
 <div class="container">
 
-<div class="section-label">PRICING</div>
+<div class="section-label">
+PRICING
+</div>
 
 <h1 class="section-title">
 Simple.<br>
@@ -1668,22 +1984,34 @@ each additional €1,000 of bike budget.
 
 <div class="price-card">
 
-<h3>€1K – €2K</h3>
+<h3>
+€1K – €2K
+</h3>
 
-<div class="price">€50</div>
+<div class="price">
+€50
+</div>
 
-<p>Your personalised bike search.</p>
+<p>
+Your personalised bike search.
+</p>
 
 <ul class="features">
+
 <li>3 recommended bikes</li>
 <li>New and/or second-hand options</li>
 <li>Price comparison</li>
 <li>Key specifications</li>
 <li>Pros and cons</li>
 <li>Strongest recommendation</li>
+
 </ul>
 
-<a href="#" onclick="showPage('finder');return false;" class="btn btn-primary">
+<a
+href="#"
+onclick="showPage('finder');return false;"
+class="btn btn-primary"
+>
 FIND MY BIKE →
 </a>
 
@@ -1692,22 +2020,34 @@ FIND MY BIKE →
 
 <div class="price-card featured">
 
-<h3>€4K – €5K</h3>
+<h3>
+€4K – €5K
+</h3>
 
-<div class="price">€125</div>
+<div class="price">
+€125
+</div>
 
-<p>For higher-end bike searches.</p>
+<p>
+For higher-end bike searches.
+</p>
 
 <ul class="features">
+
 <li>3 recommended bikes</li>
 <li>Detailed market research</li>
 <li>Component comparison</li>
 <li>Suspension analysis</li>
 <li>Pros and cons</li>
 <li>Strongest recommendation</li>
+
 </ul>
 
-<a href="#" onclick="showPage('finder');return false;" class="btn btn-primary">
+<a
+href="#"
+onclick="showPage('finder');return false;"
+class="btn btn-primary"
+>
 FIND MY BIKE →
 </a>
 
@@ -1716,22 +2056,34 @@ FIND MY BIKE →
 
 <div class="price-card">
 
-<h3>€8K – €9K</h3>
+<h3>
+€8K – €9K
+</h3>
 
-<div class="price">€225</div>
+<div class="price">
+€225
+</div>
 
-<p>For premium MTB searches.</p>
+<p>
+For premium MTB searches.
+</p>
 
 <ul class="features">
+
 <li>3 recommended bikes</li>
 <li>New and second-hand market</li>
 <li>Specification comparison</li>
 <li>Geometry considerations</li>
 <li>Pros and cons</li>
 <li>Strongest recommendation</li>
+
 </ul>
 
-<a href="#" onclick="showPage('finder');return false;" class="btn btn-primary">
+<a
+href="#"
+onclick="showPage('finder');return false;"
+class="btn btn-primary"
+>
 FIND MY BIKE →
 </a>
 
@@ -1743,9 +2095,12 @@ FIND MY BIKE →
 
 <br><br>
 
+
 <div class="card">
 
-<h3>PRICING FORMULA</h3>
+<h3>
+PRICING FORMULA
+</h3>
 
 <p>
 €50 starting price + €25 for every additional €1,000 of bike budget.
@@ -1790,25 +2145,41 @@ Find your perfect bike, without the hassle.
 
 </div>
 
+
 <div class="footer-links">
 
-<a href="#" onclick="showPage('home');return false;">Home</a>
+<a href="#" onclick="showPage('home');return false;">
+Home
+</a>
 
-<a href="#" onclick="showPage('how');return false;">How It Works</a>
+<a href="#" onclick="showPage('how');return false;">
+How It Works
+</a>
 
-<a href="#" onclick="showPage('downhill');return false;">Downhill</a>
+<a href="#" onclick="showPage('downhill');return false;">
+Downhill
+</a>
 
-<a href="#" onclick="showPage('enduro');return false;">Enduro</a>
+<a href="#" onclick="showPage('enduro');return false;">
+Enduro
+</a>
 
-<a href="#" onclick="showPage('trail');return false;">Trail</a>
+<a href="#" onclick="showPage('trail');return false;">
+Trail
+</a>
 
-<a href="#" onclick="showPage('finder');return false;">Find My Bike</a>
+<a href="#" onclick="showPage('finder');return false;">
+Find My Bike
+</a>
 
-<a href="#" onclick="showPage('pricing');return false;">Pricing</a>
+<a href="#" onclick="showPage('pricing');return false;">
+Pricing
+</a>
 
 </div>
 
 </div>
+
 
 <div class="copyright">
 © 2026 RideFound. Your next MTB. Found.
@@ -1840,7 +2211,10 @@ function showPage(pageId){
         behavior:"smooth"
     });
 
-    document.getElementById("navLinks").classList.remove("mobile-open");
+    document
+        .getElementById("navLinks")
+        .classList
+        .remove("mobile-open");
 }
 
 
@@ -1850,19 +2224,22 @@ function toggleMenu(){
 
     document
         .getElementById("navLinks")
-        .classList.toggle("mobile-open");
+        .classList
+        .toggle("mobile-open");
 
 }
 
 
 /* ================= FINDER ================= */
 
-let currentStep=1;
+let currentStep = 1;
 
-const totalSteps=10;
+const totalSteps = 10;
 
-let answers={};
+let answers = {};
 
+
+/* ================= UPDATE FINDER ================= */
 
 function updateFinder(){
 
@@ -1870,7 +2247,7 @@ function updateFinder(){
         question.classList.remove("active");
     });
 
-    const current=document.querySelector(
+    const current = document.querySelector(
         `.question[data-step="${currentStep}"]`
     );
 
@@ -1878,54 +2255,53 @@ function updateFinder(){
         current.classList.add("active");
     }
 
-    const percentage=Math.round(
-        (currentStep/totalSteps)*100
+    const percentage = Math.round(
+        (currentStep / totalSteps) * 100
     );
 
-    document.getElementById("progressBar").style.width=
-        percentage+"%";
+    document.getElementById("progressBar").style.width =
+        percentage + "%";
 
-    document.getElementById("percent").textContent=
-        percentage+"%";
+    document.getElementById("percent").textContent =
+        percentage + "%";
 
-    document.getElementById("stepText").textContent=
-        "Question "+currentStep+" of "+totalSteps;
+    document.getElementById("stepText").textContent =
+        "Question " + currentStep + " of " + totalSteps;
 
-    document.getElementById("backBtn").style.display=
-        currentStep>1 ? "inline-flex" : "none";
+    document.getElementById("backBtn").style.display =
+        currentStep > 1 ? "inline-flex" : "none";
 
-    document.getElementById("nextBtn").textContent=
-        currentStep===totalSteps
-        ? "SEND MY SEARCH →"
+    document.getElementById("nextBtn").textContent =
+        currentStep === totalSteps
+        ? "FINISH →"
         : "NEXT →";
 }
 
 
-/* ================= SAVE CURRENT ANSWER ================= */
+/* ================= SAVE ANSWER ================= */
 
 function saveAnswer(){
 
-    const question=document.querySelector(
+    const question = document.querySelector(
         `.question[data-step="${currentStep}"]`
     );
 
     if(!question) return;
 
+    const selected = [
+        ...question.querySelectorAll(".selected")
+    ].map(el=>el.textContent.trim());
 
-    const selected=[...question.querySelectorAll(".selected")]
-        .map(el=>el.textContent.trim());
+    const textInputs = [
+        ...question.querySelectorAll("input,textarea")
+    ]
+    .map(el=>el.value.trim())
+    .filter(Boolean);
 
-
-    const textInputs=[...question.querySelectorAll("input,textarea")]
-        .map(el=>el.value.trim())
-        .filter(Boolean);
-
-
-    answers[currentStep]={
+    answers[currentStep] = {
         selected:selected,
         text:textInputs
     };
-
 }
 
 
@@ -1935,7 +2311,7 @@ function nextStep(){
 
     saveAnswer();
 
-    if(currentStep<totalSteps){
+    if(currentStep < totalSteps){
 
         currentStep++;
 
@@ -1943,7 +2319,7 @@ function nextStep(){
 
     }else{
 
-        sendSearch();
+        prepareFinalScreen();
 
     }
 
@@ -1956,7 +2332,7 @@ function previousStep(){
 
     saveAnswer();
 
-    if(currentStep>1){
+    if(currentStep > 1){
 
         currentStep--;
 
@@ -1971,13 +2347,15 @@ function previousStep(){
 
 document.addEventListener("click",function(e){
 
-    const budget=e.target.closest(".budget");
+    const budget = e.target.closest(".budget");
 
     if(!budget) return;
 
     document
         .querySelectorAll(".budget")
-        .forEach(item=>item.classList.remove("selected"));
+        .forEach(item=>{
+            item.classList.remove("selected");
+        });
 
     budget.classList.add("selected");
 
@@ -1988,14 +2366,17 @@ document.addEventListener("click",function(e){
 
 document.addEventListener("click",function(e){
 
-    const single=e.target.closest(".single");
+    const single = e.target.closest(".single");
 
     if(!single) return;
 
-    const parent=single.parentElement;
+    const parent = single.parentElement;
 
-    parent.querySelectorAll(".single")
-        .forEach(item=>item.classList.remove("selected"));
+    parent
+        .querySelectorAll(".single")
+        .forEach(item=>{
+            item.classList.remove("selected");
+        });
 
     single.classList.add("selected");
 
@@ -2006,7 +2387,7 @@ document.addEventListener("click",function(e){
 
 document.addEventListener("click",function(e){
 
-    const multi=e.target.closest(".multi");
+    const multi = e.target.closest(".multi");
 
     if(!multi) return;
 
@@ -2015,73 +2396,79 @@ document.addEventListener("click",function(e){
 });
 
 
-/* ================= EMAIL ================= */
+/* ================= PREPARE EMAIL ================= */
 
-function sendSearch(){
+function prepareFinalScreen(){
 
     saveAnswer();
 
-    const budgetSelected=
-        document.querySelector(".question[data-step='1'] .budget.selected");
+    const budgetSelected =
+        document.querySelector(
+            ".question[data-step='1'] .budget.selected"
+        );
 
-    const customBudget=
+    const customBudget =
         document.getElementById("customBudget").value.trim();
 
-    const budget=
+    const budget =
         customBudget ||
-        (budgetSelected ? budgetSelected.textContent.trim() : "Not specified");
+        (
+            budgetSelected
+            ? budgetSelected.textContent.trim()
+            : "Not specified"
+        );
 
 
-    const riding=
+    const riding =
         answers[2]?.selected?.join(", ") ||
         "Not specified";
 
 
-    const newUsed=
+    const newUsed =
         answers[3]?.selected?.join(", ") ||
         "Not specified";
 
 
-    const where=
+    const where =
         document.getElementById("whereRide").value.trim() ||
         "Not specified";
 
 
-    const priorities=
+    const priorities =
         answers[5]?.selected?.join(", ") ||
         "Not specified";
 
 
-    const height=
+    const height =
         document.getElementById("height").value.trim() ||
         "Not specified";
 
 
-    const experience=
+    const experience =
         answers[7]?.selected?.join(", ") ||
         "Not specified";
 
 
-    const brands=
+    const brands =
         document.getElementById("brands").value.trim() ||
         "Not specified";
 
 
-    const avoidBrands=
+    const avoidBrands =
         document.getElementById("avoidBrands").value.trim() ||
         "None";
 
 
-    const requirements=
+    const requirements =
         document.getElementById("requirements").value.trim() ||
         "None";
 
 
-    const subject=
+    const subject =
         "New RideFound MTB Search";
 
 
-    const body=
+    const body =
 `NEW RIDEFOUND MTB SEARCH
 
 Budget:
@@ -2118,25 +2505,101 @@ ${requirements}
 Please start researching this RideFound search.`;
 
 
-    const mailto=
-        "mailto:marchenayh@gmail.com"+
-        "?subject="+encodeURIComponent(subject)+
-        "&body="+encodeURIComponent(body);
+    const mailto =
+        "mailto:marchenayh@gmail.com" +
+        "?subject=" +
+        encodeURIComponent(subject) +
+        "&body=" +
+        encodeURIComponent(body);
 
 
-    window.location.href=mailto;
+    document.getElementById("sendEmailButton").href =
+        mailto;
 
 
-    setTimeout(()=>{
+    document
+        .querySelectorAll(".question")
+        .forEach(question=>{
+            question.classList.remove("active");
+        });
 
-        alert(
-            "Your RideFound search is ready! Your email app should open with the full search addressed to marchenayh@gmail.com."
-        );
 
-    },700);
+    document
+        .getElementById("finalScreen")
+        .classList
+        .add("active");
+
+
+    document
+        .getElementById("finderButtons")
+        .style.display = "none";
+
+
+    document.getElementById("progressBar").style.width =
+        "100%";
+
+    document.getElementById("percent").textContent =
+        "100%";
+
+    document.getElementById("stepText").textContent =
+        "Search ready";
+
+
+    document
+        .getElementById("sendEmailButton")
+        .onclick = function(){
+
+            setTimeout(()=>{
+                alert(
+                    "Your RideFound search has been prepared in your email app."
+                );
+            },500);
+
+        };
 
 }
 
+
+/* ================= RESET FINDER ================= */
+
+function resetFinder(){
+
+    currentStep = 1;
+
+    answers = {};
+
+    document
+        .querySelectorAll(".selected")
+        .forEach(item=>{
+            item.classList.remove("selected");
+        });
+
+
+    document
+        .querySelectorAll("input,textarea")
+        .forEach(input=>{
+            input.value = "";
+        });
+
+
+    document
+        .getElementById("finalScreen")
+        .classList
+        .remove("active");
+
+
+    document
+        .getElementById("finderButtons")
+        .style
+        .display = "flex";
+
+
+    updateFinder();
+
+}
+
+
+/* ================= START ================= */
 
 updateFinder();
 
@@ -2144,4 +2607,3 @@ updateFinder();
 
 </body>
 </html>
-```
