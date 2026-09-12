@@ -1,1184 +1,1217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RideFound — Find Your Perfect Bike</title>
+  <title>RideFound — Find Your Perfect Bike</title>
+  <meta name="description" content="RideFound searches the mountain bike market to find the bike that fits your riding, budget and requirements.">
 
-<meta name="description" content="RideFound finds the mountain bike that fits your riding, budget and requirements.">
+  <!-- RF favicon -->
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23070709'/%3E%3Ctext x='14' y='70' font-family='Arial,sans-serif' font-size='58' font-weight='900' fill='white'%3ER%3C/text%3E%3Ctext x='54' y='70' font-family='Arial,sans-serif' font-size='58' font-weight='900' fill='%23008cff'%3EF%3C/text%3E%3C/svg%3E"
+  >
 
-<!-- =========================
-     BROWSER TAB ICON
-     RF ONLY
-========================= -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='white'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-family='Arial,sans-serif' font-size='43' font-weight='900'%3E%3Ctspan fill='black'%3ER%3C/tspan%3E%3Ctspan fill='%232f8cff'%3EF%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #070709;
+      --bg2: #0d0e11;
+      --card: #121419;
+      --card2: #181a20;
+      --text: #ffffff;
+      --muted: #a4a7ae;
+      --blue: #008cff;
+      --blue2: #42adff;
+      --border: rgba(255,255,255,0.09);
+      --radius: 22px;
+    }
 
-<style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-:root{
-    --bg:#070709;
-    --bg2:#0d0e12;
-    --card:#111319;
-    --card2:#15171d;
-    --blue:#2f8cff;
-    --blue2:#67adff;
-    --white:#ffffff;
-    --muted:#9b9da5;
-    --border:rgba(255,255,255,.09);
-    --radius:22px;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
 
-html{
-    scroll-behavior:smooth;
-}
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--bg);
-    color:white;
-    line-height:1.5;
-    overflow-x:hidden;
-}
+    button {
+      cursor: pointer;
+    }
 
-button,
-input,
-textarea{
-    font-family:inherit;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-button{
-    cursor:pointer;
-}
+    /* =========================
+       NAVIGATION
+    ========================= */
 
-a{
-    color:inherit;
-    text-decoration:none;
-}
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      background: rgba(7,7,9,0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
 
-/* =========================
-   NAV
-========================= */
+    .logo {
+      font-size: 23px;
+      font-weight: 950;
+      letter-spacing: -1px;
+      cursor: pointer;
+    }
 
-nav{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:76px;
-    z-index:1000;
-    background:rgba(7,7,9,.84);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(255,255,255,.06);
-}
+    .logo span {
+      color: var(--blue);
+    }
 
-.nav-inner{
-    max-width:1250px;
-    height:100%;
-    margin:auto;
-    padding:0 25px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
 
-.logo{
-    font-size:21px;
-    font-weight:950;
-    letter-spacing:-1px;
-}
+    .nav-links button {
+      background: none;
+      border: 0;
+      color: #c7c9ce;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
 
-.logo span{
-    color:var(--blue);
-}
+    .nav-links button:hover {
+      color: white;
+    }
 
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:30px;
-}
+    .nav-cta {
+      background: var(--blue) !important;
+      color: white !important;
+      padding: 12px 18px;
+      border-radius: 999px;
+    }
 
-.nav-links a{
-    font-size:14px;
-    color:#c9cad0;
-    transition:.25s;
-}
+    .nav-cta:hover {
+      background: var(--blue2) !important;
+      transform: translateY(-1px);
+    }
 
-.nav-links a:hover{
-    color:white;
-}
+    /* =========================
+       GENERAL
+    ========================= */
 
-.nav-cta{
-    background:var(--blue);
-    color:white!important;
-    padding:12px 19px;
-    border-radius:10px;
-    font-weight:800;
-}
+    .page {
+      display: none;
+      min-height: 100vh;
+    }
 
-.menu-btn{
-    display:none;
-    background:none;
-    border:none;
-    color:white;
-    font-size:27px;
-}
+    .page.active {
+      display: block;
+    }
 
-/* =========================
-   PAGE SYSTEM
-========================= */
+    .section {
+      width: min(1180px, 88%);
+      margin: auto;
+      padding: 110px 0;
+    }
 
-.page{
-    display:none;
-}
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
 
-.page.active{
-    display:block;
-}
+    h1,
+    h2,
+    h3 {
+      line-height: 0.98;
+      letter-spacing: -2px;
+    }
 
-.section{
-    max-width:1250px;
-    margin:auto;
-    padding:110px 25px;
-}
+    h2 {
+      font-size: clamp(42px, 6vw, 76px);
+      margin-bottom: 22px;
+    }
 
-.section-title{
-    max-width:800px;
-    margin-bottom:55px;
-}
+    .section-intro {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 18px;
+    }
 
-.eyebrow{
-    color:var(--blue);
-    text-transform:uppercase;
-    letter-spacing:2px;
-    font-size:12px;
-    font-weight:900;
-    margin-bottom:16px;
-}
+    .blue {
+      color: var(--blue);
+    }
 
-h1,
-h2,
-h3{
-    line-height:1.02;
-    letter-spacing:-2px;
-}
+    /* =========================
+       BUTTONS
+    ========================= */
 
-h2{
-    font-size:58px;
-}
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 16px 23px;
+      font-weight: 900;
+      font-size: 14px;
+      transition: 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
 
-.muted{
-    color:var(--muted);
-}
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+    }
 
-/* =========================
-   HERO
-========================= */
+    .btn-primary:hover {
+      background: var(--blue2);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0,140,255,0.22);
+    }
 
-.hero{
-    min-height:100vh;
-    position:relative;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
+    .btn-secondary {
+      background: rgba(255,255,255,0.07);
+      color: white;
+      border: 1px solid var(--border);
+    }
 
-    background:
-        linear-gradient(
-            90deg,
-            rgba(5,5,7,.97) 0%,
-            rgba(5,5,7,.78) 42%,
-            rgba(5,5,7,.18) 100%
-        ),
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.67) 46%, rgba(0,0,0,0.2) 100%),
         url("https://raw.githubusercontent.com/RideFoundFounder/ridefound-website/main/Capture%20d%27%C3%A9cran%202026-08-31%20210441.png")
-        center/cover;
-}
-
-.hero::after{
-    content:"";
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:0;
-    height:180px;
-    background:linear-gradient(transparent,var(--bg));
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-    max-width:1250px;
-    width:100%;
-    margin:auto;
-    padding:120px 25px 100px;
-}
-
-.hero h1{
-    font-size:clamp(55px,8vw,105px);
-    max-width:950px;
-    text-transform:uppercase;
-}
-
-.hero h1 span{
-    color:var(--blue);
-}
-
-.hero p{
-    margin-top:28px;
-    max-width:650px;
-    font-size:19px;
-    color:#c7c8cd;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:14px;
-    margin-top:38px;
-    flex-wrap:wrap;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
-.btn{
-    border:none;
-    border-radius:12px;
-    padding:16px 23px;
-    font-size:14px;
-    font-weight:900;
-    transition:.25s;
-}
-
-.btn-primary{
-    background:var(--blue);
-    color:white;
-}
-
-.btn-primary:hover{
-    transform:translateY(-2px);
-    background:#4a9aff;
-}
-
-.btn-secondary{
-    background:rgba(255,255,255,.07);
-    border:1px solid var(--border);
-    color:white;
-}
-
-.btn-secondary:hover{
-    background:rgba(255,255,255,.12);
-}
-
-/* =========================
-   CATEGORY SECTION
-========================= */
-
-.categories{
-    background:var(--bg);
-}
-
-.category-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
-}
-
-.category-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    overflow:hidden;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.category-card:hover{
-    transform:translateY(-7px);
-    border-color:rgba(47,140,255,.55);
-}
-
-.category-image{
-    height:210px;
-    overflow:hidden;
-}
-
-.category-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:.5s;
-}
-
-.category-card:hover img{
-    transform:scale(1.05);
-}
-
-.category-info{
-    padding:25px;
-}
-
-.category-info h3{
-    font-size:28px;
-    margin-bottom:10px;
-}
-
-.category-info p{
-    color:var(--muted);
-    font-size:15px;
-}
-
-/* =========================
-   HOW IT WORKS
-========================= */
-
-.how{
-    background:var(--bg2);
-}
-
-.steps{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-.step{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:28px;
-}
-
-.step-number{
-    color:var(--blue);
-    font-size:13px;
-    font-weight:900;
-    margin-bottom:35px;
-}
-
-.step h3{
-    font-size:23px;
-    margin-bottom:13px;
-}
-
-.step p{
-    color:var(--muted);
-    font-size:14px;
-}
-
-/* =========================
-   CATEGORY DETAIL PAGES
-========================= */
-
-.detail-hero{
-    min-height:65vh;
-    display:flex;
-    align-items:end;
-    padding:150px 25px 80px;
-    position:relative;
-    overflow:hidden;
-}
-
-.detail-hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-        linear-gradient(
-            0deg,
-            rgba(7,7,9,1) 0%,
-            rgba(7,7,9,.35) 100%
-        ),
-        var(--detail-image) center/cover;
-}
-
-.detail-content{
-    position:relative;
-    z-index:2;
-    max-width:1250px;
-    width:100%;
-    margin:auto;
-}
-
-.detail-content h1{
-    font-size:clamp(60px,9vw,115px);
-    text-transform:uppercase;
-}
-
-.detail-content p{
-    max-width:700px;
-    margin-top:25px;
-    font-size:19px;
-    color:#d0d1d5;
-}
-
-.detail-section{
-    max-width:1000px;
-    margin:auto;
-    padding:100px 25px;
-}
-
-.detail-section h2{
-    font-size:45px;
-    margin-bottom:25px;
-}
-
-.detail-section p{
-    color:#b2b4bb;
-    font-size:17px;
-    margin-bottom:25px;
-}
-
-.info-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-    margin-top:40px;
-}
-
-.info-box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:30px;
-}
-
-.info-box h3{
-    font-size:20px;
-    margin-bottom:15px;
-}
-
-.info-box p{
-    margin:0;
-    font-size:15px;
-}
-
-/* =========================
-   FINDER
-========================= */
-
-.finder{
-    background:var(--bg2);
-}
-
-.finder-box{
-    max-width:850px;
-    margin:auto;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:28px;
-    padding:45px;
-}
-
-.progress{
-    width:100%;
-    height:5px;
-    background:#24262c;
-    border-radius:10px;
-    overflow:hidden;
-    margin-bottom:35px;
-}
-
-.progress-bar{
-    height:100%;
-    width:0%;
-    background:var(--blue);
-    transition:.3s;
-}
-
-.finder-step{
-    display:none;
-}
-
-.finder-step.active{
-    display:block;
-    animation:fadeIn .3s ease;
-}
-
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(8px);
+        center/cover no-repeat;
     }
 
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.finder-step h3{
-    font-size:35px;
-    margin-bottom:10px;
-}
-
-.finder-step .question-help{
-    color:var(--muted);
-    margin-bottom:28px;
-}
-
-.options{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-}
-
-.option{
-    padding:18px;
-    border:1px solid var(--border);
-    background:#0d0f13;
-    border-radius:14px;
-    transition:.2s;
-    color:white;
-    text-align:left;
-}
-
-.option:hover{
-    border-color:var(--blue);
-}
-
-.option.selected{
-    background:rgba(47,140,255,.12);
-    border-color:var(--blue);
-}
-
-input,
-textarea{
-    width:100%;
-    background:#0b0c10;
-    border:1px solid var(--border);
-    border-radius:14px;
-    color:white;
-    padding:17px;
-    outline:none;
-    font-size:15px;
-    margin-bottom:14px;
-}
-
-input:focus,
-textarea:focus{
-    border-color:var(--blue);
-}
-
-textarea{
-    min-height:140px;
-    resize:vertical;
-}
-
-.finder-buttons{
-    display:flex;
-    justify-content:space-between;
-    gap:12px;
-    margin-top:30px;
-}
-
-.finder-counter{
-    color:#777a82;
-    font-size:13px;
-    margin-top:20px;
-}
-
-/* =========================
-   CONTACT DETAILS
-========================= */
-
-.contact-fields{
-    margin-top:20px;
-}
-
-.required{
-    color:var(--blue);
-}
-
-.contact-note{
-    color:#85878e;
-    font-size:13px;
-    margin-top:5px;
-}
-
-/* =========================
-   PRICING
-========================= */
-
-.pricing{
-    background:var(--bg);
-}
-
-.price-card{
-    max-width:650px;
-    margin:auto;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(47,140,255,.13),
-            rgba(255,255,255,.025)
-        );
-    border:1px solid rgba(47,140,255,.25);
-    border-radius:28px;
-    padding:45px;
-}
-
-.price{
-    font-size:75px;
-    font-weight:950;
-    letter-spacing:-5px;
-    margin:10px 0 20px;
-}
-
-.price span{
-    font-size:18px;
-    color:var(--muted);
-    letter-spacing:0;
-}
-
-.price-card p{
-    color:#b5b7bd;
-}
-
-.features{
-    list-style:none;
-    margin:30px 0;
-}
-
-.features li{
-    padding:9px 0;
-    color:#d0d1d5;
-}
-
-.features li::before{
-    content:"✓";
-    color:var(--blue);
-    font-weight:900;
-    margin-right:10px;
-}
-
-/* =========================
-   EXAMPLE RESULTS
-========================= */
-
-.results{
-    background:var(--bg2);
-}
-
-.result-list{
-    max-width:850px;
-    margin:auto;
-}
-
-.result-card{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    background:var(--card);
-    border:1px solid var(--border);
-    padding:25px;
-    border-radius:18px;
-    margin-bottom:13px;
-}
-
-.result-card h3{
-    font-size:23px;
-    margin-bottom:5px;
-}
-
-.result-card p{
-    color:var(--muted);
-    font-size:14px;
-}
-
-.match{
-    font-weight:950;
-    color:var(--blue);
-    white-space:nowrap;
-}
-
-/* =========================
-   WHY RIDEFOUND
-========================= */
-
-.why-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-.why-card{
-    padding:28px;
-    border-radius:20px;
-    border:1px solid var(--border);
-    background:var(--card);
-}
-
-.why-card h3{
-    font-size:21px;
-    margin-bottom:13px;
-}
-
-.why-card p{
-    color:var(--muted);
-    font-size:14px;
-}
-
-/* =========================
-   CTA
-========================= */
-
-.cta{
-    max-width:1250px;
-    margin:100px auto;
-    padding:90px 40px;
-    border-radius:30px;
-    position:relative;
-    overflow:hidden;
-    background:
-        linear-gradient(
-            120deg,
-            rgba(47,140,255,.22),
-            rgba(20,20,25,.95)
-        );
-    border:1px solid rgba(47,140,255,.22);
-}
-
-.cta h2{
-    max-width:750px;
-}
-
-.cta p{
-    color:#b9bbc2;
-    margin:20px 0 30px;
-}
-
-/* =========================
-   CONTACT PAGE
-========================= */
-
-.contact-page{
-    min-height:100vh;
-    padding-top:76px;
-}
-
-.contact-header{
-    max-width:850px;
-    margin:auto;
-    text-align:center;
-    padding:110px 25px 55px;
-}
-
-.contact-header h1{
-    font-size:clamp(55px,8vw,90px);
-}
-
-.contact-header p{
-    color:var(--muted);
-    margin-top:20px;
-    font-size:18px;
-}
-
-.contact-boxes{
-    max-width:900px;
-    margin:0 auto;
-    padding:20px 25px 120px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:22px;
-}
-
-.contact-box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:25px;
-    padding:40px;
-    text-align:center;
-    transition:.3s;
-}
-
-.contact-box:hover{
-    transform:translateY(-5px);
-    border-color:rgba(47,140,255,.55);
-}
-
-.contact-icon{
-    width:65px;
-    height:65px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:0 auto 25px;
-    border-radius:18px;
-    background:rgba(47,140,255,.1);
-    color:var(--blue);
-    font-size:28px;
-    font-weight:900;
-}
-
-.contact-box h2{
-    font-size:30px;
-    margin-bottom:12px;
-}
-
-.contact-box p{
-    color:var(--muted);
-    margin-bottom:25px;
-    word-break:break-word;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    border-top:1px solid var(--border);
-    padding:45px 25px;
-    background:#050506;
-}
-
-.footer-inner{
-    max-width:1250px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    gap:30px;
-}
-
-.footer-text{
-    color:#777a82;
-    font-size:13px;
-    margin-top:10px;
-}
-
-.footer-links{
-    display:flex;
-    gap:22px;
-    flex-wrap:wrap;
-}
-
-.footer-links a{
-    color:#999ba2;
-    font-size:13px;
-}
-
-.footer-links a:hover{
-    color:white;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:900px){
-
-    .nav-links{
-        display:none;
-        position:absolute;
-        top:76px;
-        left:0;
-        right:0;
-        background:#08090c;
-        padding:25px;
-        flex-direction:column;
-        align-items:stretch;
-        gap:18px;
-        border-bottom:1px solid var(--border);
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 180px;
+      background: linear-gradient(transparent, var(--bg));
     }
 
-    .nav-links.open{
-        display:flex;
+    .hero-content {
+      width: min(1180px, 88%);
+      margin: auto;
+      padding-top: 80px;
+      position: relative;
+      z-index: 2;
     }
 
-    .menu-btn{
-        display:block;
+    .hero h1 {
+      max-width: 950px;
+      font-size: clamp(58px, 9vw, 120px);
+      font-weight: 950;
+      text-transform: uppercase;
     }
 
-    .category-grid,
-    .steps,
-    .why-grid{
-        grid-template-columns:1fr 1fr;
+    .hero h1 span {
+      color: var(--blue);
     }
 
-    h2{
-        font-size:45px;
-    }
-}
-
-@media(max-width:650px){
-
-    .section{
-        padding:80px 20px;
+    .hero p {
+      max-width: 620px;
+      margin-top: 30px;
+      color: #d0d2d6;
+      font-size: 18px;
     }
 
-    .hero-content{
-        padding:120px 20px 80px;
+    .hero-buttons {
+      display: flex;
+      gap: 13px;
+      margin-top: 32px;
+      flex-wrap: wrap;
     }
 
-    .hero h1{
-        font-size:54px;
+    /* =========================
+       HOW IT WORKS
+    ========================= */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 55px;
     }
 
-    .hero p{
-        font-size:16px;
+    .step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+      min-height: 250px;
+      transition: 0.25s ease;
     }
 
-    .category-grid,
-    .steps,
-    .why-grid,
-    .info-grid,
-    .contact-boxes{
-        grid-template-columns:1fr;
+    .step:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0,140,255,0.35);
     }
 
-    .category-image{
-        height:190px;
+    .step-number {
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 950;
+      letter-spacing: 1px;
+      margin-bottom: 55px;
     }
 
-    .finder-box{
-        padding:25px 20px;
-        border-radius:20px;
+    .step h3 {
+      font-size: 24px;
+      margin-bottom: 13px;
     }
 
-    .options{
-        grid-template-columns:1fr;
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
     }
 
-    .finder-step h3{
-        font-size:28px;
+    /* =========================
+       BIKE CATEGORIES
+    ========================= */
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 55px;
     }
 
-    .price-card{
-        padding:30px 25px;
+    .category-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.3s ease;
     }
 
-    .price{
-        font-size:60px;
+    .category-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(0,140,255,0.45);
     }
 
-    .result-card{
-        align-items:flex-start;
-        flex-direction:column;
+    .category-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
     }
 
-    .cta{
-        margin:60px 20px;
-        padding:60px 25px;
+    .category-content {
+      padding: 24px;
     }
 
-    .cta h2{
-        font-size:42px;
+    .category-content h3 {
+      font-size: 28px;
+      margin-bottom: 10px;
     }
 
-    .footer-inner{
-        flex-direction:column;
+    .category-content p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 18px;
     }
 
-    .contact-header{
-        padding-top:90px;
+    .category-link {
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 13px;
     }
 
-    .contact-box{
-        padding:32px 20px;
-    }
-}
+    /* =========================
+       DETAIL PAGES
+    ========================= */
 
-</style>
+    .detail-hero {
+      min-height: 50vh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .detail-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.95),
+        rgba(0,0,0,0.15)
+      );
+    }
+
+    .detail-hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(1180px, 88%);
+      margin: auto;
+      padding: 90px 0 55px;
+    }
+
+    .detail-hero h1 {
+      font-size: clamp(52px, 8vw, 100px);
+      text-transform: uppercase;
+    }
+
+    .detail-body {
+      width: min(900px, 88%);
+      margin: auto;
+      padding: 75px 0 120px;
+    }
+
+    .detail-body h2 {
+      font-size: 42px;
+      margin-top: 55px;
+    }
+
+    .detail-body p {
+      color: var(--muted);
+      font-size: 17px;
+      margin-top: 15px;
+    }
+
+    .detail-points {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .detail-point {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 22px;
+      border-radius: 16px;
+    }
+
+    .detail-point strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .detail-point span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* =========================
+       FINDER
+    ========================= */
+
+    .finder-wrap {
+      max-width: 850px;
+      margin: 55px auto 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 35px;
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .progress-bar {
+      height: 5px;
+      background: #24262b;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 45px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 9%;
+      background: var(--blue);
+      transition: width 0.3s ease;
+    }
+
+    .question {
+      display: none;
+      animation: questionIn 0.25s ease;
+    }
+
+    .question.active {
+      display: block;
+    }
+
+    @keyframes questionIn {
+      from {
+        opacity: 0;
+        transform: translateX(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .question h3 {
+      font-size: clamp(30px, 5vw, 48px);
+      margin-bottom: 28px;
+    }
+
+    .question-sub {
+      color: var(--muted);
+      margin-top: -15px;
+      margin-bottom: 25px;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 11px;
+    }
+
+    .option {
+      background: #191b20;
+      border: 1px solid var(--border);
+      color: white;
+      padding: 18px;
+      border-radius: 15px;
+      text-align: left;
+      transition: 0.2s ease;
+    }
+
+    .option:hover {
+      border-color: rgba(0,140,255,0.5);
+    }
+
+    .option.selected {
+      background: rgba(0,140,255,0.14);
+      border-color: var(--blue);
+      box-shadow: inset 0 0 0 1px var(--blue);
+    }
+
+    .text-input,
+    .textarea {
+      width: 100%;
+      background: #191b20;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      color: white;
+      padding: 17px;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    .text-input:focus,
+    .textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,140,255,0.1);
+    }
+
+    .textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .custom-budget {
+      margin-top: 15px;
+    }
+
+    .finder-controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 35px;
+    }
+
+    .finder-controls .btn {
+      min-width: 120px;
+    }
+
+    /* =========================
+       PRICING
+    ========================= */
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 500px);
+      margin-top: 55px;
+    }
+
+    .price-card {
+      background: linear-gradient(145deg, #15171c, #0e0f12);
+      border: 1px solid rgba(0,140,255,0.3);
+      border-radius: 28px;
+      padding: 38px;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.25);
+    }
+
+    .price-card h3 {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 70px;
+      font-weight: 950;
+      letter-spacing: -4px;
+      margin: 18px 0;
+    }
+
+    .price-card > p {
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    .features {
+      list-style: none;
+      margin: 25px 0 30px;
+    }
+
+    .features li {
+      padding: 10px 0;
+      color: #d6d8dc;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .features li::before {
+      content: "✓";
+      color: var(--blue);
+      font-weight: 900;
+      margin-right: 10px;
+    }
+
+    /* =========================
+       EXAMPLE RESULTS
+    ========================= */
+
+    .results {
+      background: var(--bg2);
+    }
+
+    .example-label {
+      display: inline-block;
+      padding: 8px 12px;
+      border: 1px solid rgba(0,140,255,0.3);
+      color: var(--blue);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .result-grid {
+      display: grid;
+      gap: 15px;
+      margin-top: 45px;
+    }
+
+    .result-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 27px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .result-card.best {
+      border-color: rgba(0,140,255,0.5);
+    }
+
+    .result-rank {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .result-card h3 {
+      font-size: 30px;
+    }
+
+    .result-card p {
+      color: var(--muted);
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .match {
+      text-align: right;
+    }
+
+    .match strong {
+      font-size: 28px;
+      color: var(--blue);
+      display: block;
+    }
+
+    .match span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* =========================
+       WHY RIDEFOUND
+    ========================= */
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-top: 50px;
+    }
+
+    .why-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+    }
+
+    .why-card h3 {
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    .why-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+      width: min(1180px, 88%);
+      margin: 40px auto 100px;
+      border-radius: 30px;
+      padding: 90px 60px;
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(0,140,255,0.2), transparent 55%),
+        #101216;
+      border: 1px solid var(--border);
+    }
+
+    .cta h2 {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .cta p {
+      color: var(--muted);
+      margin: 20px auto 28px;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 55px;
+    }
+
+    .contact-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+    }
+
+    .contact-box h3 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      word-break: break-word;
+      margin-bottom: 22px;
+    }
+
+    /* =========================
+       SUCCESS
+    ========================= */
+
+    .success-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 20px 60px;
+    }
+
+    .success-card {
+      max-width: 700px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 60px 35px;
+    }
+
+    .success-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 25px;
+      border-radius: 50%;
+      background: rgba(0,140,255,0.14);
+      border: 1px solid rgba(0,140,255,0.35);
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+    .success-card h2 {
+      font-size: 48px;
+    }
+
+    .success-card p {
+      color: var(--muted);
+      margin: 20px auto 30px;
+      max-width: 520px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 45px 6%;
+      background: #050506;
+    }
+
+    .footer-inner {
+      max-width: 1180px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand p {
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .footer-links button {
+      background: none;
+      border: none;
+      color: #aaa;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .footer-links button:hover {
+      color: white;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      nav {
+        height: 68px;
+        padding: 0 5%;
+      }
+
+      .nav-links {
+        gap: 10px;
+      }
+
+      .nav-links button:not(.nav-cta) {
+        display: none;
+      }
+
+      .section {
+        width: 90%;
+        padding: 80px 0;
+      }
+
+      .steps,
+      .categories,
+      .why-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .category-image {
+        height: 135px;
+      }
+
+      .detail-hero {
+        min-height: 42vh;
+      }
+
+      .detail-body {
+        width: 90%;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        width: 90%;
+        padding: 70px 25px;
+      }
+    }
+
+    @media (max-width: 620px) {
+
+      h2 {
+        font-size: 43px;
+      }
+
+      .hero h1 {
+        font-size: 57px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      .steps,
+      .categories,
+      .why-grid,
+      .detail-points,
+      .options {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        min-height: auto;
+      }
+
+      .step-number {
+        margin-bottom: 25px;
+      }
+
+      .category-image {
+        height: 135px;
+      }
+
+      .detail-hero {
+        min-height: 38vh;
+      }
+
+      .detail-hero-content {
+        padding-bottom: 35px;
+      }
+
+      .detail-body h2 {
+        font-size: 36px;
+      }
+
+      .finder-wrap {
+        padding: 22px;
+        border-radius: 22px;
+      }
+
+      .question h3 {
+        font-size: 34px;
+      }
+
+      .finder-controls {
+        flex-direction: column-reverse;
+      }
+
+      .finder-controls .btn {
+        width: 100%;
+      }
+
+      .result-card {
+        grid-template-columns: 1fr;
+      }
+
+      .match {
+        text-align: left;
+      }
+
+      .price {
+        font-size: 58px;
+      }
+
+      .price-card {
+        padding: 28px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
 
-<nav>
-    <div class="nav-inner">
-
-        <a href="#" class="logo" onclick="showPage('home')">
-            RID<span>E</span>FOUND
-        </a>
-
-        <button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-        <div class="nav-links" id="navLinks">
-
-            <a href="#" onclick="showPage('home')">
-                Home
-            </a>
-
-            <a href="#" onclick="showPage('how')">
-                How It Works
-            </a>
-
-            <a href="#" onclick="showPage('finder')">
-                Find My Bike
-            </a>
-
-            <a href="#" onclick="showPage('pricing')">
-                Pricing
-            </a>
-
-            <a href="#" onclick="showPage('contact')">
-                Contact
-            </a>
-
-            <a href="#" class="nav-cta" onclick="showPage('finder')">
-                FIND MY BIKE →
-            </a>
-
-        </div>
-
+  <nav>
+    <div class="logo" onclick="showPage('home')">
+      RIDE<span>FOUND</span>
     </div>
-</nav>
+
+    <div class="nav-links">
+      <button onclick="showPage('home')">Home</button>
+      <button onclick="showPage('how')">How It Works</button>
+      <button onclick="showPage('finder')">Find My Bike</button>
+      <button onclick="showPage('pricing')">Pricing</button>
+      <button onclick="showPage('contact')">Contact</button>
+
+      <button class="nav-cta" onclick="showPage('finder')">
+        FIND MY BIKE →
+      </button>
+    </div>
+  </nav>
 
 
-<!-- =========================
-     HOME
-========================= -->
+  <!-- =========================
+       HOME
+  ========================= -->
 
-<main id="home" class="page active">
+  <main id="home" class="page active">
 
     <section class="hero">
+      <div class="hero-content">
 
-        <div class="hero-content">
+        <div class="eyebrow">YOUR NEXT MTB. FOUND.</div>
 
-            <div class="eyebrow">
-                YOUR NEXT MTB. FOUND.
-            </div>
+        <h1>
+          FIND YOUR PERFECT BIKE,
+          <span>WITHOUT THE HASSLE.</span>
+        </h1>
 
-            <h1>
-                FIND YOUR PERFECT BIKE,
-                <span>WITHOUT THE HASSLE.</span>
-            </h1>
+        <p>
+          Tell us what you ride, your budget and exactly what you're looking for.
+          We'll search the market and find the bikes that fit you.
+        </p>
 
-            <p>
-                Tell us what you ride, your budget and exactly what
-                you're looking for. We'll search the market and find
-                the bikes that fit you.
-            </p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary" onclick="showPage('finder')">
+            FIND MY PERFECT BIKE →
+          </button>
 
-            <div class="hero-buttons">
-
-                <button
-                    class="btn btn-primary"
-                    onclick="showPage('finder')">
-                    FIND MY PERFECT BIKE →
-                </button>
-
-                <button
-                    class="btn btn-secondary"
-                    onclick="showPage('how')">
-                    HOW IT WORKS
-                </button>
-
-            </div>
-
+          <button class="btn btn-secondary" onclick="showPage('how')">
+            HOW IT WORKS
+          </button>
         </div>
+
+      </div>
+    </section>
+
+
+    <!-- HOW IT WORKS PREVIEW -->
+
+    <section class="section">
+
+      <div class="eyebrow">THE PROCESS</div>
+
+      <h2>
+        FROM SEARCHING<br>
+        TO <span class="blue">FOUND.</span>
+      </h2>
+
+      <p class="section-intro">
+        You tell us what you're looking for. We do the research, comparison
+        and filtering so you don't have to spend hours scrolling through listings.
+      </p>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number">01</div>
+          <h3>TELL US</h3>
+          <p>
+            Tell us your budget, riding style and what you're looking for.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">02</div>
+          <h3>WE SEARCH</h3>
+          <p>
+            We search across the new and second-hand market to find bikes
+            that match your requirements.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">03</div>
+          <h3>WE COMPARE</h3>
+          <p>
+            We compare specifications, suspension, geometry, components,
+            price and suitability.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">04</div>
+          <h3>YOU CHOOSE</h3>
+          <p>
+            You receive a personalised shortlist with our strongest recommendations.
+          </p>
+        </div>
+
+      </div>
 
     </section>
 
 
-    <!-- MTB TYPES -->
+    <!-- MTB CATEGORIES -->
 
-    <section class="section categories">
+    <section class="section">
 
-        <div class="section-title">
+      <div class="eyebrow">KNOW YOUR RIDE</div>
 
-            <div class="eyebrow">
-                FIND YOUR TYPE
-            </div>
+      <h2>
+        WHAT ARE YOU<br>
+        <span class="blue">RIDING?</span>
+      </h2>
 
-            <h2>
-                WHAT KIND OF MTB ARE YOU LOOKING FOR?
-            </h2>
+      <p class="section-intro">
+        Different bikes are built for different terrain. Learn what each category
+        is designed to do.
+      </p>
 
+      <div class="categories">
+
+        <div class="category-card" onclick="showPage('downhill')">
+          <img
+            class="category-image"
+            src="https://ride-found.com/Capture%20d%27%C3%A9cran%202026-08-31%20203606.png"
+            alt="Downhill mountain bike"
+          >
+
+          <div class="category-content">
+            <h3>DOWNHILL</h3>
+            <p>
+              Maximum downhill speed, control and suspension performance.
+            </p>
+            <div class="category-link">LEARN MORE →</div>
+          </div>
         </div>
 
-        <div class="category-grid">
 
-            <!-- DOWNHILL -->
+        <div class="category-card" onclick="showPage('enduro')">
+          <img
+            class="category-image"
+            src="https://ride-found.com/Capture%20d%27%C3%A9cran%202026-08-31%20204059.png"
+            alt="Enduro mountain bike"
+          >
 
-            <div
-                class="category-card"
-                onclick="showPage('downhill')">
-
-                <div class="category-image">
-
-                    <img
-                        src="https://ride-found.com/Capture%20d%27%C3%A9cran%202026-08-31%20203606.png"
-                        alt="Downhill mountain bike">
-
-                </div>
-
-                <div class="category-info">
-
-                    <h3>Downhill</h3>
-
-                    <p>
-                        Maximum downhill speed, control and confidence.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- ENDURO -->
-
-            <div
-                class="category-card"
-                onclick="showPage('enduro')">
-
-                <div class="category-image">
-
-                    <img
-                        src="https://ride-found.com/Capture%20d%27%C3%A9cran%202026-08-31%20204059.png"
-                        alt="Enduro mountain bike">
-
-                </div>
-
-                <div class="category-info">
-
-                    <h3>Enduro</h3>
-
-                    <p>
-                        Built to climb, descend and handle aggressive trails.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- TRAIL -->
-
-            <div
-                class="category-card"
-                onclick="showPage('trail')">
-
-                <div class="category-image">
-
-                    <img
-                        src="https://ride-found.com/Capture%20d%27%C3%A9cran%202026-08-31%20204159.png"
-                        alt="Trail mountain bike">
-
-                </div>
-
-                <div class="category-info">
-
-                    <h3>Trail</h3>
-
-                    <p>
-                        Versatile, fun and capable across almost any trail.
-                    </p>
-
-                </div>
-
-            </div>
-
+          <div class="category-content">
+            <h3>ENDURO</h3>
+            <p>
+              Built to climb back up and attack technical descents.
+            </p>
+            <div class="category-link">LEARN MORE →</div>
+          </div>
         </div>
+
+
+        <div class="category-card" onclick="showPage('trail')">
+          <img
+            class="category-image"
+            src="https://ride-found.com/Capture%20d%27%C3%A9cran%202026-08-31%20204159.png"
+            alt="Trail mountain bike"
+          >
+
+          <div class="category-content">
+            <h3>TRAIL</h3>
+            <p>
+              The versatile all-rounder for a huge range of trails.
+            </p>
+            <div class="category-link">LEARN MORE →</div>
+          </div>
+        </div>
+
+      </div>
 
     </section>
 
@@ -1187,50 +1220,44 @@ footer{
 
     <section class="section">
 
-        <div class="section-title">
+      <div class="eyebrow">WHY RIDEFOUND?</div>
 
-            <div class="eyebrow">
-                WHY RID EFOUND
-            </div>
+      <h2>
+        LESS SEARCHING.<br>
+        <span class="blue">MORE RIDING.</span>
+      </h2>
 
-            <h2>
-                STOP SEARCHING.
-                START RIDING.
-            </h2>
+      <div class="why-grid">
 
+        <div class="why-card">
+          <h3>SAVE HOURS</h3>
+          <p>
+            Stop scrolling through hundreds of bike listings.
+          </p>
         </div>
 
-        <div class="why-grid">
-
-            <div class="why-card">
-                <h3>SAVE HOURS</h3>
-                <p>
-                    Stop scrolling through hundreds of bike listings.
-                </p>
-            </div>
-
-            <div class="why-card">
-                <h3>KNOW WHAT YOU'RE BUYING</h3>
-                <p>
-                    We look beyond the brand name and analyse the actual bike.
-                </p>
-            </div>
-
-            <div class="why-card">
-                <h3>BUILT AROUND YOU</h3>
-                <p>
-                    Your riding, your budget and your requirements.
-                </p>
-            </div>
-
-            <div class="why-card">
-                <h3>NEW OR USED</h3>
-                <p>
-                    We can search both markets.
-                </p>
-            </div>
-
+        <div class="why-card">
+          <h3>KNOW WHAT YOU'RE BUYING</h3>
+          <p>
+            We look beyond the brand name and analyse the actual bike.
+          </p>
         </div>
+
+        <div class="why-card">
+          <h3>BUILT AROUND YOU</h3>
+          <p>
+            Your riding, your budget and your requirements.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <h3>NEW OR USED</h3>
+          <p>
+            We can search both markets.
+          </p>
+        </div>
+
+      </div>
 
     </section>
 
@@ -1239,1316 +1266,1484 @@ footer{
 
     <div class="cta">
 
-        <div class="eyebrow">
-            YOUR NEXT MTB
+      <div class="eyebrow">READY?</div>
+
+      <h2>
+        YOUR PERFECT BIKE<br>
+        IS <span class="blue">OUT THERE.</span>
+      </h2>
+
+      <p>
+        Let us find it.
+      </p>
+
+      <button class="btn btn-primary" onclick="showPage('finder')">
+        START MY SEARCH →
+      </button>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       HOW IT WORKS PAGE
+  ========================= -->
+
+  <section id="how" class="page">
+
+    <div class="section">
+
+      <div class="eyebrow">HOW IT WORKS</div>
+
+      <h2>
+        YOU RIDE.<br>
+        <span class="blue">WE SEARCH.</span>
+      </h2>
+
+      <p class="section-intro">
+        RideFound is designed to take the frustrating part of buying a mountain
+        bike away from you.
+      </p>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number">01</div>
+          <h3>TELL US</h3>
+          <p>
+            Tell us your budget, riding style, location, experience,
+            preferred brands and requirements.
+          </p>
         </div>
 
-        <h2>
-            YOUR PERFECT BIKE IS OUT THERE.
-        </h2>
+        <div class="step">
+          <div class="step-number">02</div>
+          <h3>WE SEARCH</h3>
+          <p>
+            We research the market for bikes that fit your criteria.
+          </p>
+        </div>
 
-        <p>
-            Let us find it.
-        </p>
+        <div class="step">
+          <div class="step-number">03</div>
+          <h3>WE COMPARE</h3>
+          <p>
+            We look at specifications, suspension, components, geometry,
+            price and overall suitability.
+          </p>
+        </div>
 
-        <button
-            class="btn btn-primary"
-            onclick="showPage('finder')">
-            START MY SEARCH →
+        <div class="step">
+          <div class="step-number">04</div>
+          <h3>YOU CHOOSE</h3>
+          <p>
+            You receive a personalised shortlist and our strongest recommendation.
+          </p>
+        </div>
+
+      </div>
+
+      <div style="margin-top:55px;">
+        <button class="btn btn-primary" onclick="showPage('finder')">
+          START MY SEARCH →
         </button>
+      </div>
 
     </div>
 
-</main>
+  </section>
 
 
-<!-- =========================
-     HOW IT WORKS
-========================= -->
+  <!-- =========================
+       DOWNHILL
+  ========================= -->
 
-<section id="how" class="page how">
+  <section id="downhill" class="page">
+
+    <div
+      class="detail-hero"
+      style="background-image:url('https://ride-found.com/Capture%20d%27%C3%A9cran%202026-08-31%20203606.png');"
+    >
+      <div class="detail-hero-content">
+        <div class="eyebrow">MTB CATEGORY</div>
+        <h1>DOWNHILL</h1>
+      </div>
+    </div>
+
+    <div class="detail-body">
+
+      <h2>BUILT TO <span class="blue">DESCEND.</span></h2>
+
+      <p>
+        Downhill bikes are designed around descending steep, technical terrain
+        at high speed. They prioritise suspension travel, stability, control
+        and confidence when the trail gets rough.
+      </p>
+
+      <div class="detail-points">
+
+        <div class="detail-point">
+          <strong>LONG-TRAVEL SUSPENSION</strong>
+          <span>
+            Designed to handle large impacts and rough terrain.
+          </span>
+        </div>
+
+        <div class="detail-point">
+          <strong>STABILITY</strong>
+          <span>
+            Geometry is focused on keeping the bike controlled at speed.
+          </span>
+        </div>
+
+        <div class="detail-point">
+          <strong>POWERFUL BRAKING</strong>
+          <span>
+            Strong braking performance is important for steep descents.
+          </span>
+        </div>
+
+        <div class="detail-point">
+          <strong>BIKE PARKS & DH</strong>
+          <span>
+            Ideal for dedicated downhill trails and bike parks.
+          </span>
+        </div>
+
+      </div>
+
+      <h2>WHO IS IT <span class="blue">FOR?</span></h2>
+
+      <p>
+        Downhill bikes are best suited to riders who spend a lot of time
+        descending and want maximum control and suspension performance.
+        They are less focused on efficient climbing.
+      </p>
+
+      <div style="margin-top:35px;">
+        <button class="btn btn-primary" onclick="showPage('finder')">
+          FIND MY BIKE →
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ENDURO
+  ========================= -->
+
+  <section id="enduro" class="page">
+
+    <div
+      class="detail-hero"
+      style="background-image:url('https://ride-found.com/Capture%20d%27%C3%A9cran%202026-08-31%20204059.png');"
+    >
+      <div class="detail-hero-content">
+        <div class="eyebrow">MTB CATEGORY</div>
+        <h1>ENDURO</h1>
+      </div>
+    </div>
+
+    <div class="detail-body">
+
+      <h2>CLIMB UP.<br><span class="blue">SEND IT DOWN.</span></h2>
+
+      <p>
+        Enduro bikes are built to handle challenging descents while still
+        being capable of getting you back to the top. They are a strong choice
+        for riders who want a serious all-round performance bike.
+      </p>
+
+      <div class="detail-points">
+
+        <div class="detail-point">
+          <strong>DESCENT PERFORMANCE</strong>
+          <span>
+            Built for technical and aggressive descents.
+          </span>
+        </div>
+
+        <div class="detail-point">
+          <strong>CLIMBING ABILITY</strong>
+          <span>
+            More efficient uphill than a dedicated downhill bike.
+          </span>
+        </div>
+
+        <div class="detail-point">
+          <strong>VERSATILITY</strong>
+          <span>
+            Great for local trails, mountains and bike parks.
+          </span>
+        </div>
+
+        <div class="detail-point">
+          <strong>LONG-TRAVEL SETUPS</strong>
+          <span>
+            Typically designed with substantial suspension travel.
+          </span>
+        </div>
+
+      </div>
+
+      <h2>WHO IS IT <span class="blue">FOR?</span></h2>
+
+      <p>
+        Enduro is a great option for riders who want to ride challenging
+        terrain without giving up the ability to pedal the bike uphill.
+      </p>
+
+      <div style="margin-top:35px;">
+        <button class="btn btn-primary" onclick="showPage('finder')">
+          FIND MY BIKE →
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       TRAIL
+  ========================= -->
+
+  <section id="trail" class="page">
+
+    <div
+      class="detail-hero"
+      style="background-image:url('https://ride-found.com/Capture%20d%27%C3%A9cran%202026-08-31%20204159.png');"
+    >
+      <div class="detail-hero-content">
+        <div class="eyebrow">MTB CATEGORY</div>
+        <h1>TRAIL</h1>
+      </div>
+    </div>
+
+    <div class="detail-body">
+
+      <h2>THE <span class="blue">ALL-ROUNDER.</span></h2>
+
+      <p>
+        Trail bikes are designed to cover a broad range of riding.
+        They balance climbing efficiency with enough suspension and control
+        for technical descents.
+      </p>
+
+      <div class="detail-points">
+
+        <div class="detail-point">
+          <strong>VERSATILE</strong>
+          <span>
+            Suitable for many different types of trail riding.
+          </span>
+        </div>
+
+        <div class="detail-point">
+          <strong>CLIMBING</strong>
+          <span>
+            Generally more efficient uphill than longer-travel bikes.
+          </span>
+        </div>
+
+        <div class="detail-point">
+          <strong>DESCENDING</strong>
+          <span>
+            Capable of handling technical trails while staying playful.
+          </span>
+        </div>
+
+        <div class="detail-point">
+          <strong>EVERYDAY RIDING</strong>
+          <span>
+            A strong choice if you want one bike for lots of different rides.
+          </span>
+        </div>
+
+      </div>
+
+      <h2>WHO IS IT <span class="blue">FOR?</span></h2>
+
+      <p>
+        Trail bikes are ideal for riders who want one versatile bike that
+        can handle normal local rides as well as more demanding trails.
+      </p>
+
+      <div style="margin-top:35px;">
+        <button class="btn btn-primary" onclick="showPage('finder')">
+          FIND MY BIKE →
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FINDER PAGE
+  ========================= -->
+
+  <section id="finder" class="page">
 
     <div class="section">
 
-        <div class="section-title">
+      <div class="eyebrow">MTB FINDER</div>
 
-            <div class="eyebrow">
-                HOW IT WORKS
-            </div>
+      <h2>
+        LET'S FIND<br>
+        YOUR <span class="blue">BIKE.</span>
+      </h2>
 
-            <h2>
-                YOUR BIKE.
-                WITHOUT THE SEARCH.
-            </h2>
+      <p class="section-intro">
+        Answer a few questions and we'll use your requirements to search
+        for the bikes that fit you.
+      </p>
+
+      <div class="finder-wrap">
+
+        <div class="progress-top">
+          <span id="questionCounter">QUESTION 1 OF 11</span>
+          <span id="progressPercent">9%</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+
+        <!-- STEP 1 -->
+
+        <div class="question active" data-step="1">
+
+          <h3>WHAT'S YOUR BUDGET?</h3>
+
+          <div class="options" id="budgetOptions">
+
+            <button class="option" onclick="selectSingle(this,'budget','€1k–€2k')">€1k–€2k</button>
+            <button class="option" onclick="selectSingle(this,'budget','€2k–€3k')">€2k–€3k</button>
+            <button class="option" onclick="selectSingle(this,'budget','€3k–€4k')">€3k–€4k</button>
+            <button class="option" onclick="selectSingle(this,'budget','€4k–€5k')">€4k–€5k</button>
+            <button class="option" onclick="selectSingle(this,'budget','€5k–€6k')">€5k–€6k</button>
+            <button class="option" onclick="selectSingle(this,'budget','€6k–€7k')">€6k–€7k</button>
+            <button class="option" onclick="selectSingle(this,'budget','€7k–€8k')">€7k–€8k</button>
+            <button class="option" onclick="selectSingle(this,'budget','€8k–€9k')">€8k–€9k</button>
+            <button class="option" onclick="selectSingle(this,'budget','€9k–€10k')">€9k–€10k</button>
+            <button class="option" onclick="selectSingle(this,'budget','€10k+')">€10k+</button>
+
+          </div>
+
+          <div class="custom-budget">
+            <input
+              id="customBudget"
+              class="text-input"
+              type="number"
+              min="1"
+              placeholder="Or enter a custom budget (€)"
+            >
+          </div>
 
         </div>
 
-        <div class="steps">
 
-            <div class="step">
-                <div class="step-number">01</div>
-                <h3>TELL US</h3>
-                <p>
-                    Tell us your budget, riding style and what you're looking for.
-                </p>
-            </div>
+        <!-- STEP 2 -->
 
-            <div class="step">
-                <div class="step-number">02</div>
-                <h3>WE SEARCH</h3>
-                <p>
-                    We search across the new and second-hand market.
-                </p>
-            </div>
+        <div class="question" data-step="2">
 
-            <div class="step">
-                <div class="step-number">03</div>
-                <h3>WE COMPARE</h3>
-                <p>
-                    We compare specifications, suspension, geometry,
-                    components, price and suitability.
-                </p>
-            </div>
+          <h3>WHAT TYPE OF RIDING DO YOU DO?</h3>
 
-            <div class="step">
-                <div class="step-number">04</div>
-                <h3>YOU CHOOSE</h3>
-                <p>
-                    You receive a personalised shortlist with our strongest recommendations.
-                </p>
-            </div>
+          <p class="question-sub">Select all that apply.</p>
+
+          <div class="options">
+
+            <button class="option multi" onclick="toggleMulti(this,'riding','Trail')">Trail</button>
+            <button class="option multi" onclick="toggleMulti(this,'riding','Enduro')">Enduro</button>
+            <button class="option multi" onclick="toggleMulti(this,'riding','Downhill')">Downhill</button>
+            <button class="option multi" onclick="toggleMulti(this,'riding','XC')">XC</button>
+            <button class="option multi" onclick="toggleMulti(this,'riding','Bike Park')">Bike Park</button>
+            <button class="option multi" onclick="toggleMulti(this,'riding','All-round / Mixed')">All-round / Mixed</button>
+
+          </div>
 
         </div>
 
-        <div style="margin-top:45px;">
 
-            <button
-                class="btn btn-primary"
-                onclick="showPage('finder')">
-                START MY SEARCH →
+        <!-- STEP 3 -->
+
+        <div class="question" data-step="3">
+
+          <h3>NEW OR SECOND-HAND?</h3>
+
+          <div class="options">
+
+            <button class="option" onclick="selectSingle(this,'condition','New')">
+              New
             </button>
 
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     DOWNHILL
-========================= -->
-
-<section
-    id="downhill"
-    class="page">
-
-    <div
-        class="detail-hero"
-        style="--detail-image:url('https://ride-found.com/Capture%20d%27%C3%A9cran%202026-08-31%20203606.png');">
-
-        <div class="detail-content">
-
-            <div class="eyebrow">
-                MTB TYPE
-            </div>
-
-            <h1>DOWNHILL</h1>
-
-            <p>
-                Pure gravity. Maximum speed. Maximum control.
-                Downhill bikes are designed specifically for descending
-                steep, rough and technical terrain.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="detail-section">
-
-        <h2>
-            WHAT IS A DOWNHILL BIKE?
-        </h2>
-
-        <p>
-            A downhill mountain bike is designed primarily for going
-            downhill as fast and confidently as possible. They normally
-            have long-travel suspension, aggressive geometry and powerful
-            braking systems.
-        </p>
-
-        <p>
-            They are ideal if your main focus is bike parks, downhill
-            racing, steep technical trails and jumps.
-        </p>
-
-        <div class="info-grid">
-
-            <div class="info-box">
-
-                <h3>IDEAL FOR</h3>
-
-                <p>
-                    Bike parks, downhill tracks, racing, steep descents,
-                    jumps and very technical terrain.
-                </p>
-
-            </div>
-
-            <div class="info-box">
-
-                <h3>NOT IDEAL FOR</h3>
-
-                <p>
-                    Long-distance climbing or riders looking for one bike
-                    to do everything.
-                </p>
-
-            </div>
-
-        </div>
-
-        <div style="margin-top:40px;">
-
-            <button
-                class="btn btn-primary"
-                onclick="showPage('finder')">
-                FIND MY DOWNHILL BIKE →
+            <button class="option" onclick="selectSingle(this,'condition','Second-hand')">
+              Second-hand
             </button>
 
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     ENDURO
-========================= -->
-
-<section
-    id="enduro"
-    class="page">
-
-    <div
-        class="detail-hero"
-        style="--detail-image:url('https://ride-found.com/Capture%20d%27%C3%A9cran%202026-08-31%20204059.png');">
-
-        <div class="detail-content">
-
-            <div class="eyebrow">
-                MTB TYPE
-            </div>
-
-            <h1>ENDURO</h1>
-
-            <p>
-                The ultimate balance between climbing ability and
-                aggressive downhill performance.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="detail-section">
-
-        <h2>
-            WHAT IS AN ENDURO BIKE?
-        </h2>
-
-        <p>
-            Enduro bikes are designed to handle demanding descents while
-            still being capable of climbing back to the top.
-        </p>
-
-        <p>
-            They are a great choice for riders who want one mountain bike
-            capable of handling aggressive trails, alpine riding,
-            bike parks and everyday trail rides.
-        </p>
-
-        <div class="info-grid">
-
-            <div class="info-box">
-
-                <h3>IDEAL FOR</h3>
-
-                <p>
-                    Aggressive trail riding, Alps trips, bike parks,
-                    technical descents and mixed terrain.
-                </p>
-
-            </div>
-
-            <div class="info-box">
-
-                <h3>NOT IDEAL FOR</h3>
-
-                <p>
-                    Riders who mainly want lightweight XC-style riding
-                    or pure downhill racing.
-                </p>
-
-            </div>
-
-        </div>
-
-        <div style="margin-top:40px;">
-
-            <button
-                class="btn btn-primary"
-                onclick="showPage('finder')">
-                FIND MY ENDURO BIKE →
+            <button class="option" onclick="selectSingle(this,'condition','Either')">
+              Either
             </button>
 
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     TRAIL
-========================= -->
-
-<section
-    id="trail"
-    class="page">
-
-    <div
-        class="detail-hero"
-        style="--detail-image:url('https://ride-found.com/Capture%20d%27%C3%A9cran%202026-08-31%20204159.png');">
-
-        <div class="detail-content">
-
-            <div class="eyebrow">
-                MTB TYPE
-            </div>
-
-            <h1>TRAIL</h1>
-
-            <p>
-                Versatile, fun and capable. Trail bikes are designed to
-                handle a huge variety of mountain terrain.
-            </p>
+          </div>
 
         </div>
 
-    </div>
 
+        <!-- STEP 4 -->
 
-    <div class="detail-section">
+        <div class="question" data-step="4">
 
-        <h2>
-            WHAT IS A TRAIL BIKE?
-        </h2>
+          <h3>WHERE DO YOU RIDE?</h3>
 
-        <p>
-            Trail bikes sit between lightweight cross-country bikes and
-            more aggressive enduro bikes.
-        </p>
-
-        <p>
-            They are excellent for riders who want a bike that feels fun
-            and efficient on climbs while still being capable on technical
-            descents.
-        </p>
-
-        <div class="info-grid">
-
-            <div class="info-box">
-
-                <h3>IDEAL FOR</h3>
-
-                <p>
-                    Local trails, all-round riding, long rides,
-                    technical trails and riders who want versatility.
-                </p>
-
-            </div>
-
-            <div class="info-box">
-
-                <h3>NOT IDEAL FOR</h3>
-
-                <p>
-                    Pure downhill racing or extremely aggressive
-                    enduro riding.
-                </p>
-
-            </div>
+          <textarea
+            id="whereRide"
+            class="textarea"
+            placeholder="Mostly local trails with trips to the Alps and bike parks."
+          ></textarea>
 
         </div>
 
-        <div style="margin-top:40px;">
 
-            <button
-                class="btn btn-primary"
-                onclick="showPage('finder')">
-                FIND MY TRAIL BIKE →
+        <!-- STEP 5 -->
+
+        <div class="question" data-step="5">
+
+          <h3>WHAT MATTERS MOST?</h3>
+
+          <p class="question-sub">Select all that apply.</p>
+
+          <div class="options">
+
+            <button class="option multi" onclick="toggleMulti(this,'priorities','Downhill performance')">
+              Downhill performance
             </button>
 
+            <button class="option multi" onclick="toggleMulti(this,'priorities','Climbing ability')">
+              Climbing ability
+            </button>
+
+            <button class="option multi" onclick="toggleMulti(this,'priorities','Weight')">
+              Weight
+            </button>
+
+            <button class="option multi" onclick="toggleMulti(this,'priorities','Suspension')">
+              Suspension
+            </button>
+
+            <button class="option multi" onclick="toggleMulti(this,'priorities','Brakes')">
+              Brakes
+            </button>
+
+            <button class="option multi" onclick="toggleMulti(this,'priorities','Durability')">
+              Durability
+            </button>
+
+            <button class="option multi" onclick="toggleMulti(this,'priorities','Value for money')">
+              Value for money
+            </button>
+
+            <button class="option multi" onclick="toggleMulti(this,'priorities','Components')">
+              Components
+            </button>
+
+          </div>
+
         </div>
+
+
+        <!-- STEP 6 -->
+
+        <div class="question" data-step="6">
+
+          <h3>WHAT'S YOUR HEIGHT?</h3>
+
+          <input
+            id="height"
+            class="text-input"
+            type="number"
+            min="1"
+            placeholder="Height in cm — e.g. 175"
+          >
+
+        </div>
+
+
+        <!-- STEP 7 -->
+
+        <div class="question" data-step="7">
+
+          <h3>HOW EXPERIENCED ARE YOU?</h3>
+
+          <div class="options">
+
+            <button class="option" onclick="selectSingle(this,'experience','Beginner')">
+              Beginner
+            </button>
+
+            <button class="option" onclick="selectSingle(this,'experience','Intermediate')">
+              Intermediate
+            </button>
+
+            <button class="option" onclick="selectSingle(this,'experience','Advanced')">
+              Advanced
+            </button>
+
+            <button class="option" onclick="selectSingle(this,'experience','Expert')">
+              Expert
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- STEP 8 -->
+
+        <div class="question" data-step="8">
+
+          <h3>WHAT BRAND ARE YOU LOOKING FOR?</h3>
+
+          <input
+            id="brands"
+            class="text-input"
+            type="text"
+            placeholder="YT, Specialized, Trek, Canyon..."
+          >
+
+        </div>
+
+
+        <!-- STEP 9 -->
+
+        <div class="question" data-step="9">
+
+          <h3>ANY BRANDS YOU DON'T WANT?</h3>
+
+          <input
+            id="avoidBrands"
+            class="text-input"
+            type="text"
+            placeholder="Optional"
+          >
+
+        </div>
+
+
+        <!-- STEP 10 -->
+
+        <div class="question" data-step="10">
+
+          <h3>ANY SPECIFIC REQUIREMENTS?</h3>
+
+          <textarea
+            id="requirements"
+            class="textarea"
+            placeholder="I want a Fox 38, powerful brakes and 29-inch wheels."
+          ></textarea>
+
+        </div>
+
+
+        <!-- STEP 11 -->
+
+        <div class="question" data-step="11">
+
+          <h3>WHERE SHOULD WE SEND YOUR SEARCH?</h3>
+
+          <p class="question-sub">
+            We'll use these details to contact you about your search.
+          </p>
+
+          <input
+            id="customerName"
+            class="text-input"
+            type="text"
+            placeholder="Your name *"
+            style="margin-bottom:12px;"
+          >
+
+          <input
+            id="customerEmail"
+            class="text-input"
+            type="email"
+            placeholder="Your email *"
+            style="margin-bottom:12px;"
+          >
+
+          <input
+            id="customerWhatsApp"
+            class="text-input"
+            type="tel"
+            placeholder="WhatsApp number (optional)"
+          >
+
+        </div>
+
+
+        <div class="finder-controls">
+
+          <button
+            id="backButton"
+            class="btn btn-secondary"
+            onclick="previousQuestion()"
+            style="display:none;"
+          >
+            ← BACK
+          </button>
+
+          <div></div>
+
+          <button
+            id="nextButton"
+            class="btn btn-primary"
+            onclick="nextQuestion()"
+          >
+            NEXT →
+          </button>
+
+        </div>
+
+      </div>
 
     </div>
 
-</section>
+  </section>
 
 
-<!-- =========================
-     FINDER
-========================= -->
+  <!-- =========================
+       PRICING
+  ========================= -->
 
-<section id="finder" class="page finder">
+  <section id="pricing" class="page">
 
     <div class="section">
 
-        <div class="section-title">
+      <div class="eyebrow">PRICING</div>
 
-            <div class="eyebrow">
-                MTB FINDER
-            </div>
+      <h2>
+        SIMPLE.<br>
+        <span class="blue">TRANSPARENT.</span>
+      </h2>
 
-            <h2>
-                TELL US WHAT YOU'RE LOOKING FOR.
-            </h2>
+      <p class="section-intro">
+        One personalised search. No complicated packages.
+      </p>
 
-            <p class="muted" style="margin-top:20px;">
-                Answer a few questions and we'll use your requirements
-                to build your search.
-            </p>
-
-        </div>
-
-
-        <div class="finder-box">
-
-            <div class="progress">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-
-
-            <!-- STEP 1 -->
-
-            <div class="finder-step active" data-step="1">
-
-                <h3>What's your budget?</h3>
-
-                <p class="question-help">
-                    Select a range or enter your own budget.
-                </p>
-
-                <div class="options">
-
-                    <button class="option" onclick="selectSingle(this,'budget','€1k–€2k')">€1k–€2k</button>
-                    <button class="option" onclick="selectSingle(this,'budget','€2k–€3k')">€2k–€3k</button>
-                    <button class="option" onclick="selectSingle(this,'budget','€3k–€4k')">€3k–€4k</button>
-                    <button class="option" onclick="selectSingle(this,'budget','€4k–€5k')">€4k–€5k</button>
-                    <button class="option" onclick="selectSingle(this,'budget','€5k–€6k')">€5k–€6k</button>
-                    <button class="option" onclick="selectSingle(this,'budget','€6k–€7k')">€6k–€7k</button>
-                    <button class="option" onclick="selectSingle(this,'budget','€7k–€8k')">€7k–€8k</button>
-                    <button class="option" onclick="selectSingle(this,'budget','€8k–€9k')">€8k–€9k</button>
-                    <button class="option" onclick="selectSingle(this,'budget','€9k–€10k')">€9k–€10k</button>
-                    <button class="option" onclick="selectSingle(this,'budget','€10k+')">€10k+</button>
-
-                </div>
-
-                <input
-                    id="customBudget"
-                    type="number"
-                    placeholder="Or enter custom budget (€)">
-
-            </div>
-
-
-            <!-- STEP 2 -->
-
-            <div class="finder-step" data-step="2">
-
-                <h3>What type of riding do you do?</h3>
-
-                <p class="question-help">
-                    Select everything that applies.
-                </p>
-
-                <div class="options">
-
-                    <button class="option multi" onclick="toggleMulti(this,'riding','Trail')">Trail</button>
-                    <button class="option multi" onclick="toggleMulti(this,'riding','Enduro')">Enduro</button>
-                    <button class="option multi" onclick="toggleMulti(this,'riding','Downhill')">Downhill</button>
-                    <button class="option multi" onclick="toggleMulti(this,'riding','XC')">XC</button>
-                    <button class="option multi" onclick="toggleMulti(this,'riding','Bike Park')">Bike Park</button>
-                    <button class="option multi" onclick="toggleMulti(this,'riding','All-round / Mixed')">All-round / Mixed</button>
-
-                </div>
-
-            </div>
-
-
-            <!-- STEP 3 -->
-
-            <div class="finder-step" data-step="3">
-
-                <h3>New or second-hand?</h3>
-
-                <p class="question-help">
-                    Choose your preference.
-                </p>
-
-                <div class="options">
-
-                    <button class="option" onclick="selectSingle(this,'condition','New')">New</button>
-                    <button class="option" onclick="selectSingle(this,'condition','Second-hand')">Second-hand</button>
-                    <button class="option" onclick="selectSingle(this,'condition','Either')">Either</button>
-
-                </div>
-
-            </div>
-
-
-            <!-- STEP 4 -->
-
-            <div class="finder-step" data-step="4">
-
-                <h3>Where do you ride?</h3>
-
-                <p class="question-help">
-                    Tell us about the places and trails you ride.
-                </p>
-
-                <textarea
-                    id="whereRide"
-                    placeholder="Mostly local trails with trips to the Alps and bike parks."></textarea>
-
-            </div>
-
-
-            <!-- STEP 5 -->
-
-            <div class="finder-step" data-step="5">
-
-                <h3>What matters most?</h3>
-
-                <p class="question-help">
-                    Select everything that's important to you.
-                </p>
-
-                <div class="options">
-
-                    <button class="option multi" onclick="toggleMulti(this,'priority','Downhill performance')">Downhill performance</button>
-                    <button class="option multi" onclick="toggleMulti(this,'priority','Climbing ability')">Climbing ability</button>
-                    <button class="option multi" onclick="toggleMulti(this,'priority','Weight')">Weight</button>
-                    <button class="option multi" onclick="toggleMulti(this,'priority','Suspension')">Suspension</button>
-                    <button class="option multi" onclick="toggleMulti(this,'priority','Brakes')">Brakes</button>
-                    <button class="option multi" onclick="toggleMulti(this,'priority','Durability')">Durability</button>
-                    <button class="option multi" onclick="toggleMulti(this,'priority','Value for money')">Value for money</button>
-                    <button class="option multi" onclick="toggleMulti(this,'priority','Components')">Components</button>
-
-                </div>
-
-            </div>
-
-
-            <!-- STEP 6 -->
-
-            <div class="finder-step" data-step="6">
-
-                <h3>What's your height?</h3>
-
-                <p class="question-help">
-                    This helps us identify suitable frame sizes.
-                </p>
-
-                <input
-                    id="height"
-                    type="number"
-                    placeholder="Height in cm">
-
-            </div>
-
-
-            <!-- STEP 7 -->
-
-            <div class="finder-step" data-step="7">
-
-                <h3>How experienced are you?</h3>
-
-                <div class="options">
-
-                    <button class="option" onclick="selectSingle(this,'experience','Beginner')">Beginner</button>
-                    <button class="option" onclick="selectSingle(this,'experience','Intermediate')">Intermediate</button>
-                    <button class="option" onclick="selectSingle(this,'experience','Advanced')">Advanced</button>
-                    <button class="option" onclick="selectSingle(this,'experience','Expert')">Expert</button>
-
-                </div>
-
-            </div>
-
-
-            <!-- STEP 8 -->
-
-            <div class="finder-step" data-step="8">
-
-                <h3>What brand are you looking for?</h3>
-
-                <p class="question-help">
-                    Leave blank if you don't have a preference.
-                </p>
-
-                <input
-                    id="brands"
-                    type="text"
-                    placeholder="YT, Specialized, Trek, Canyon...">
-
-            </div>
-
-
-            <!-- STEP 9 -->
-
-            <div class="finder-step" data-step="9">
-
-                <h3>Are there any brands you DON'T want?</h3>
-
-                <p class="question-help">
-                    Optional.
-                </p>
-
-                <input
-                    id="avoidBrands"
-                    type="text"
-                    placeholder="Enter brands you don't want...">
-
-            </div>
-
-
-            <!-- STEP 10 -->
-
-            <div class="finder-step" data-step="10">
-
-                <h3>Any specific requirements?</h3>
-
-                <p class="question-help">
-                    Tell us anything else that matters to you.
-                </p>
-
-                <textarea
-                    id="requirements"
-                    placeholder="I want a Fox 38, powerful brakes and 29-inch wheels."></textarea>
-
-            </div>
-
-
-            <!-- STEP 11 -->
-
-            <div class="finder-step" data-step="11">
-
-                <h3>How can we contact you?</h3>
-
-                <p class="question-help">
-                    We'll use these details to send your search results.
-                </p>
-
-                <div class="contact-fields">
-
-                    <input
-                        id="customerName"
-                        type="text"
-                        placeholder="Your name *">
-
-                    <input
-                        id="customerEmail"
-                        type="email"
-                        placeholder="Your email *">
-
-                    <input
-                        id="customerWhatsApp"
-                        type="tel"
-                        placeholder="WhatsApp number (optional)">
-
-                    <p class="contact-note">
-                        * Your email is required so we know where to contact you.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="finder-buttons">
-
-                <button
-                    class="btn btn-secondary"
-                    id="backButton"
-                    onclick="previousStep()">
-                    ← BACK
-                </button>
-
-                <button
-                    class="btn btn-primary"
-                    id="nextButton"
-                    onclick="nextStep()">
-                    NEXT →
-                </button>
-
-            </div>
-
-            <div
-                class="finder-counter"
-                id="stepCounter">
-                Step 1 of 11
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     PRICING
-========================= -->
-
-<section id="pricing" class="page pricing">
-
-    <div class="section">
-
-        <div class="section-title">
-
-            <div class="eyebrow">
-                PRICING
-            </div>
-
-            <h2>
-                SIMPLE.
-                PERSONAL.
-                TRANSPARENT.
-            </h2>
-
-        </div>
+      <div class="pricing-grid">
 
         <div class="price-card">
 
-            <div class="eyebrow">
-                MTB FIND
-            </div>
+          <h3>MTB FIND</h3>
 
-            <div class="price">
-                €49
-            </div>
+          <div class="price">€50<span style="font-size:25px;">+</span></div>
 
-            <p>
-                Your personalised bike shortlist.
-            </p>
+          <p>
+            €50 starting price + €25 for every additional €1,000 of bike budget.
+          </p>
 
-            <ul class="features">
+          <ul class="features">
 
-                <li>3 recommended bikes</li>
-                <li>New and/or second-hand options</li>
-                <li>Price comparison</li>
-                <li>Key specifications</li>
-                <li>Pros and cons</li>
-                <li>Explanation of why each bike fits</li>
-                <li>Our strongest recommendation</li>
+            <li>3 recommended bikes</li>
+            <li>New and/or second-hand options</li>
+            <li>Price comparison</li>
+            <li>Key specifications</li>
+            <li>Pros and cons</li>
+            <li>Explanation of why each bike fits</li>
+            <li>Our strongest recommendation</li>
 
-            </ul>
+          </ul>
 
-            <button
-                class="btn btn-primary"
-                onclick="showPage('finder')">
-                FIND MY BIKE →
-            </button>
+          <button class="btn btn-primary" onclick="showPage('finder')">
+            FIND MY BIKE →
+          </button>
 
         </div>
+
+      </div>
 
     </div>
 
-</section>
+  </section>
 
 
-<!-- =========================
-     EXAMPLE RESULTS
-========================= -->
+  <!-- =========================
+       EXAMPLE RESULTS
+  ========================= -->
 
-<section class="section results">
+  <section id="results" class="page">
 
-    <div class="section-title">
+    <div class="section">
 
-        <div class="eyebrow">
-            EXAMPLE ONLY
+      <div class="example-label">EXAMPLE RESULTS — NOT REAL CUSTOMER RESULTS</div>
+
+      <div class="eyebrow">WHAT YOU RECEIVE</div>
+
+      <h2>
+        YOUR RIDEFOUND<br>
+        <span class="blue">RESULTS.</span>
+      </h2>
+
+      <p class="section-intro">
+        This is an example of how a personalised shortlist could be presented.
+      </p>
+
+      <div class="result-grid">
+
+        <div class="result-card best">
+
+          <div>
+            <div class="result-rank">🥇 BEST MATCH</div>
+            <h3>YT Capra</h3>
+            <p>
+              Excellent fit for the riding style, budget and requirements.
+            </p>
+            <p>
+              ✓ Excellent downhill performance<br>
+              ✓ Suitable suspension<br>
+              ✓ Strong braking setup<br>
+              ✓ Fits the customer's budget
+            </p>
+          </div>
+
+          <div class="match">
+            <strong>94%</strong>
+            <span>MATCH</span>
+          </div>
+
         </div>
+
+
+        <div class="result-card">
+
+          <div>
+            <div class="result-rank">🥈 SECOND CHOICE</div>
+            <h3>Canyon Strive</h3>
+            <p>
+              Strong alternative with a different balance of climbing and descending performance.
+            </p>
+          </div>
+
+          <div class="match">
+            <strong>91%</strong>
+            <span>MATCH</span>
+          </div>
+
+        </div>
+
+
+        <div class="result-card">
+
+          <div>
+            <div class="result-rank">🥉 THIRD CHOICE</div>
+            <h3>Specialized Enduro</h3>
+            <p>
+              Another strong option for riders looking for aggressive trail performance.
+            </p>
+          </div>
+
+          <div class="match">
+            <strong>88%</strong>
+            <span>MATCH</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CONTACT
+  ========================= -->
+
+  <section id="contact" class="page">
+
+    <div class="section">
+
+      <div class="eyebrow">CONTACT</div>
+
+      <h2>
+        HAVE A<br>
+        <span class="blue">QUESTION?</span>
+      </h2>
+
+      <p class="section-intro">
+        RideFound is run personally by an MTB enthusiast. If you have a question,
+        get in touch directly.
+      </p>
+
+      <div class="contact-grid">
+
+        <div class="contact-box">
+
+          <h3>EMAIL</h3>
+
+          <p>
+            marchenayh@gmail.com
+          </p>
+
+          <a
+            class="btn btn-primary"
+            href="mailto:marchenayh@gmail.com?subject=RideFound%20Question"
+          >
+            EMAIL US →
+          </a>
+
+        </div>
+
+
+        <div class="contact-box">
+
+          <h3>WHATSAPP</h3>
+
+          <p>
+            +44 7389 758776
+          </p>
+
+          <a
+            class="btn btn-primary"
+            href="https://wa.me/447389758776"
+            target="_blank"
+            rel="noopener"
+          >
+            WHATSAPP US →
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SUCCESS PAGE
+  ========================= -->
+
+  <section id="success" class="page">
+
+    <div class="success-wrap">
+
+      <div class="success-card">
+
+        <div class="success-icon">✓</div>
+
+        <div class="eyebrow">SEARCH RECEIVED</div>
 
         <h2>
-            YOUR RID EFOUND RESULTS
+          WE'VE GOT<br>
+          <span class="blue">YOUR SEARCH.</span>
         </h2>
 
-        <p class="muted" style="margin-top:18px;">
-            These are example results and are not real customer recommendations.
-        </p>
-
-    </div>
-
-    <div class="result-list">
-
-        <div class="result-card">
-
-            <div>
-                <h3>🥇 BEST MATCH — YT Capra</h3>
-                <p>
-                    €2,799 · Excellent downhill performance · Strong braking setup
-                </p>
-            </div>
-
-            <div class="match">
-                94% MATCH
-            </div>
-
-        </div>
-
-
-        <div class="result-card">
-
-            <div>
-                <h3>🥈 SECOND CHOICE — Canyon Strive</h3>
-                <p>
-                    Strong all-round performance and climbing ability.
-                </p>
-            </div>
-
-            <div class="match">
-                91% MATCH
-            </div>
-
-        </div>
-
-
-        <div class="result-card">
-
-            <div>
-                <h3>🥉 THIRD CHOICE — Specialized Enduro</h3>
-                <p>
-                    Aggressive trail and enduro performance.
-                </p>
-            </div>
-
-            <div class="match">
-                88% MATCH
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     CONTACT PAGE
-========================= -->
-
-<section id="contact" class="page contact-page">
-
-    <div class="contact-header">
-
-        <div class="eyebrow">
-            GET IN TOUCH
-        </div>
-
-        <h1>
-            CONTACT
-            <span style="color:var(--blue);">RIDEFOUND.</span>
-        </h1>
-
         <p>
-            Have a question? Talk to us directly.
+          Thanks! Your RideFound search has been received.
+          We'll review your requirements and contact you using the details
+          you provided.
         </p>
 
-    </div>
+        <button class="btn btn-primary" onclick="showPage('home')">
+          BACK TO HOME
+        </button>
 
-
-    <div class="contact-boxes">
-
-
-        <!-- EMAIL BOX -->
-
-        <div class="contact-box">
-
-            <div class="contact-icon">
-                @
-            </div>
-
-            <h2>
-                EMAIL
-            </h2>
-
-            <p>
-                marchenayh@gmail.com
-            </p>
-
-            <a
-                class="btn btn-primary"
-                href="mailto:marchenayh@gmail.com">
-                EMAIL US →
-            </a>
-
-        </div>
-
-
-        <!-- WHATSAPP BOX -->
-
-        <div class="contact-box">
-
-            <div class="contact-icon">
-                W
-            </div>
-
-            <h2>
-                WHATSAPP
-            </h2>
-
-            <p>
-                +44 7389 758776
-            </p>
-
-            <a
-                class="btn btn-primary"
-                href="https://wa.me/447389758776"
-                target="_blank">
-                WHATSAPP US →
-            </a>
-
-        </div>
+      </div>
 
     </div>
 
-</section>
+  </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
-<footer>
+  <footer>
 
     <div class="footer-inner">
 
-        <div>
+      <div class="footer-brand">
 
-            <div class="logo">
-                RID<span>E</span>FOUND
-            </div>
-
-            <div class="footer-text">
-                Find your perfect bike, without the hassle.
-            </div>
-
+        <div class="logo">
+          RIDE<span>FOUND</span>
         </div>
 
-        <div class="footer-links">
+        <p>
+          Find your perfect bike, without the hassle.
+        </p>
 
-            <a href="#" onclick="showPage('home')">
-                Home
-            </a>
+      </div>
 
-            <a href="#" onclick="showPage('finder')">
-                Find My Bike
-            </a>
+      <div class="footer-links">
 
-            <a href="#" onclick="showPage('how')">
-                How It Works
-            </a>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('finder')">Find My Bike</button>
+        <button onclick="showPage('how')">How It Works</button>
+        <button onclick="showPage('pricing')">Pricing</button>
+        <button onclick="showPage('contact')">Contact</button>
 
-            <a href="#" onclick="showPage('pricing')">
-                Pricing
-            </a>
-
-            <a href="#" onclick="showPage('contact')">
-                Contact
-            </a>
-
-        </div>
+      </div>
 
     </div>
 
-</footer>
+  </footer>
 
 
-<script>
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
 
-/* =========================
-   PAGE NAVIGATION
-========================= */
+  <script>
 
-function showPage(pageId){
+    /* ========================================
+       FORMspree endpoint
+    ======================================== */
 
-    document.querySelectorAll('.page').forEach(page=>{
-        page.classList.remove('active');
-    });
-
-    const page=document.getElementById(pageId);
-
-    if(page){
-        page.classList.add('active');
-    }
-
-    window.scrollTo({
-        top:0,
-        behavior:'smooth'
-    });
-
-    document.getElementById('navLinks').classList.remove('open');
-
-}
+    const FORM_ENDPOINT = "https://formspree.io/f/xbgjbnba";
 
 
-/* =========================
-   MOBILE MENU
-========================= */
+    /* ========================================
+       PAGE NAVIGATION
+    ======================================== */
 
-function toggleMenu(){
+    function showPage(pageId) {
 
-    document
-        .getElementById('navLinks')
-        .classList
-        .toggle('open');
+      document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+      });
 
-}
+      const page = document.getElementById(pageId);
 
+      if (page) {
+        page.classList.add("active");
+      }
 
-/* =========================
-   FINDER DATA
-========================= */
-
-let currentStep=1;
-
-const totalSteps=11;
-
-const answers={
-
-    budget:"",
-    riding:[],
-    condition:"",
-    whereRide:"",
-    priority:[],
-    height:"",
-    experience:"",
-    brands:"",
-    avoidBrands:"",
-    requirements:"",
-    customerName:"",
-    customerEmail:"",
-    customerWhatsApp:""
-
-};
-
-
-/* =========================
-   SINGLE SELECT
-========================= */
-
-function selectSingle(button,key,value){
-
-    const parent=button.parentElement;
-
-    parent
-        .querySelectorAll('.option')
-        .forEach(option=>{
-            option.classList.remove('selected');
-        });
-
-    button.classList.add('selected');
-
-    answers[key]=value;
-
-}
-
-
-/* =========================
-   MULTI SELECT
-========================= */
-
-function toggleMulti(button,key,value){
-
-    button.classList.toggle('selected');
-
-    if(button.classList.contains('selected')){
-
-        if(!answers[key].includes(value)){
-            answers[key].push(value);
-        }
-
-    }else{
-
-        answers[key]=answers[key].filter(
-            item=>item!==value
-        );
-
-    }
-
-}
-
-
-/* =========================
-   SHOW FINDER STEP
-========================= */
-
-function updateFinder(){
-
-    document
-        .querySelectorAll('.finder-step')
-        .forEach(step=>{
-            step.classList.remove('active');
-        });
-
-    const activeStep=document.querySelector(
-        `.finder-step[data-step="${currentStep}"]`
-    );
-
-    if(activeStep){
-        activeStep.classList.add('active');
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
 
 
-    const progress=
-        ((currentStep-1)/(totalSteps-1))*100;
+    /* ========================================
+       FINDER DATA
+    ======================================== */
 
-    document.getElementById('progressBar').style.width=
-        progress+"%";
+    let currentStep = 1;
+    const totalSteps = 11;
 
-
-    document.getElementById('stepCounter').textContent=
-        `Step ${currentStep} of ${totalSteps}`;
-
-
-    document.getElementById('backButton').style.visibility=
-        currentStep===1 ? "hidden" : "visible";
-
-
-    document.getElementById('nextButton').textContent=
-        currentStep===totalSteps
-        ? "START MY SEARCH →"
-        : "NEXT →";
-
-}
-
-
-/* =========================
-   NEXT STEP
-========================= */
-
-function nextStep(){
-
-    /* Save text fields */
-
-    answers.whereRide=
-        document.getElementById('whereRide')?.value || "";
-
-    answers.height=
-        document.getElementById('height')?.value || "";
-
-    answers.brands=
-        document.getElementById('brands')?.value || "";
-
-    answers.avoidBrands=
-        document.getElementById('avoidBrands')?.value || "";
-
-    answers.requirements=
-        document.getElementById('requirements')?.value || "";
-
-    answers.customerName=
-        document.getElementById('customerName')?.value || "";
-
-    answers.customerEmail=
-        document.getElementById('customerEmail')?.value || "";
-
-    answers.customerWhatsApp=
-        document.getElementById('customerWhatsApp')?.value || "";
+    const answers = {
+      budget: "",
+      riding: [],
+      condition: "",
+      whereRide: "",
+      priorities: [],
+      height: "",
+      experience: "",
+      brands: "",
+      avoidBrands: "",
+      requirements: "",
+      customerName: "",
+      customerEmail: "",
+      customerWhatsApp: ""
+    };
 
 
-    /* Custom budget */
+    /* ========================================
+       SINGLE SELECTION
+    ======================================== */
 
-    const customBudget=
-        document.getElementById('customBudget')?.value || "";
+    function selectSingle(element, key, value) {
 
-    if(customBudget){
-        answers.budget="€"+customBudget;
+      const parent = element.parentElement;
+
+      parent.querySelectorAll(".option").forEach(option => {
+        option.classList.remove("selected");
+      });
+
+      element.classList.add("selected");
+
+      answers[key] = value;
+
     }
 
 
-    /* Validate final contact step */
+    /* ========================================
+       MULTIPLE SELECTION
+    ======================================== */
 
-    if(currentStep===11){
+    function toggleMulti(element, key, value) {
 
-        if(!answers.customerName.trim()){
+      element.classList.toggle("selected");
 
-            alert("Please enter your name.");
+      if (!answers[key]) {
+        answers[key] = [];
+      }
 
-            return;
+      if (answers[key].includes(value)) {
 
+        answers[key] = answers[key].filter(item => item !== value);
+
+      } else {
+
+        answers[key].push(value);
+
+      }
+
+    }
+
+
+    /* ========================================
+       VALIDATION
+    ======================================== */
+
+    function validateCurrentStep() {
+
+      if (currentStep === 1) {
+
+        const customBudget =
+          document.getElementById("customBudget").value.trim();
+
+        if (!answers.budget && !customBudget) {
+          alert("Please select a budget or enter a custom budget.");
+          return false;
         }
 
-        if(!answers.customerEmail.trim()){
-
-            alert("Please enter your email address.");
-
-            return;
-
+        if (customBudget) {
+          answers.budget = "€" + customBudget + " custom budget";
         }
 
-        if(
-            !answers.customerEmail.includes("@") ||
-            !answers.customerEmail.includes(".")
-        ){
+      }
 
-            alert("Please enter a valid email address.");
 
-            return;
+      if (currentStep === 2) {
 
+        if (answers.riding.length === 0) {
+          alert("Please select at least one type of riding.");
+          return false;
         }
 
-        sendSearch();
+      }
+
+
+      if (currentStep === 3) {
+
+        if (!answers.condition) {
+          alert("Please choose New, Second-hand or Either.");
+          return false;
+        }
+
+      }
+
+
+      if (currentStep === 5) {
+
+        if (answers.priorities.length === 0) {
+          alert("Please select at least one priority.");
+          return false;
+        }
+
+      }
+
+
+      if (currentStep === 6) {
+
+        const height =
+          document.getElementById("height").value.trim();
+
+        if (!height || Number(height) <= 0) {
+          alert("Please enter your height in centimetres.");
+          return false;
+        }
+
+        answers.height = height + " cm";
+
+      }
+
+
+      if (currentStep === 7) {
+
+        if (!answers.experience) {
+          alert("Please select your experience level.");
+          return false;
+        }
+
+      }
+
+
+      return true;
+
+    }
+
+
+    /* ========================================
+       SAVE TEXT ANSWERS
+    ======================================== */
+
+    function saveTextAnswers() {
+
+      answers.whereRide =
+        document.getElementById("whereRide")?.value.trim() || "";
+
+      answers.brands =
+        document.getElementById("brands")?.value.trim() || "";
+
+      answers.avoidBrands =
+        document.getElementById("avoidBrands")?.value.trim() || "";
+
+      answers.requirements =
+        document.getElementById("requirements")?.value.trim() || "";
+
+      answers.customerName =
+        document.getElementById("customerName")?.value.trim() || "";
+
+      answers.customerEmail =
+        document.getElementById("customerEmail")?.value.trim() || "";
+
+      answers.customerWhatsApp =
+        document.getElementById("customerWhatsApp")?.value.trim() || "";
+
+    }
+
+
+    /* ========================================
+       NEXT QUESTION
+    ======================================== */
+
+    async function nextQuestion() {
+
+      if (!validateCurrentStep()) {
+        return;
+      }
+
+      saveTextAnswers();
+
+      if (currentStep < totalSteps) {
+
+        currentStep++;
+
+        updateQuestion();
 
         return;
+      }
+
+      await sendSearch();
 
     }
 
 
-    currentStep++;
+    /* ========================================
+       PREVIOUS QUESTION
+    ======================================== */
 
-    updateFinder();
+    function previousQuestion() {
 
-}
+      if (currentStep <= 1) {
+        return;
+      }
 
+      saveTextAnswers();
 
-/* =========================
-   PREVIOUS STEP
-========================= */
+      currentStep--;
 
-function previousStep(){
-
-    if(currentStep>1){
-
-        currentStep--;
-
-        updateFinder();
+      updateQuestion();
 
     }
 
-}
 
+    /* ========================================
+       UPDATE QUESTION
+    ======================================== */
 
-/* =========================
-   SEND SEARCH
-========================= */
+    function updateQuestion() {
 
-function sendSearch(){
+      document.querySelectorAll(".question").forEach(question => {
+        question.classList.remove("active");
+      });
 
-    const subject=
-        "New RideFound MTB Search — "+answers.customerName;
-
-
-    const body=`
-
-NEW RIDEFOUND MTB SEARCH
-========================
-
-CUSTOMER DETAILS
-----------------
-Name: ${answers.customerName}
-Email: ${answers.customerEmail}
-WhatsApp: ${answers.customerWhatsApp || "Not provided"}
-
-
-BIKE SEARCH
------------
-
-Budget:
-${answers.budget || "Not specified"}
-
-
-Riding:
-${answers.riding.length
-    ? answers.riding.join(", ")
-    : "Not specified"}
-
-
-New / Second-hand:
-${answers.condition || "Not specified"}
-
-
-Where they ride:
-${answers.whereRide || "Not specified"}
-
-
-What matters most:
-${answers.priority.length
-    ? answers.priority.join(", ")
-    : "Not specified"}
-
-
-Height:
-${answers.height
-    ? answers.height+" cm"
-    : "Not specified"}
-
-
-Experience:
-${answers.experience || "Not specified"}
-
-
-Preferred brands:
-${answers.brands || "Not specified"}
-
-
-Brands they don't want:
-${answers.avoidBrands || "None specified"}
-
-
-Specific requirements:
-${answers.requirements || "None specified"}
-
-
-========================
-RideFound
-Find your perfect bike, without the hassle.
-`;
-
-
-    const mailto=
-        "mailto:marchenayh@gmail.com"+
-        "?subject="+encodeURIComponent(subject)+
-        "&body="+encodeURIComponent(body);
-
-
-    window.location.href=mailto;
-
-
-    setTimeout(()=>{
-
-        alert(
-            "Thanks! Your RideFound search has been prepared. Please send the email that opened."
+      const activeQuestion =
+        document.querySelector(
+          `.question[data-step="${currentStep}"]`
         );
 
-        showPage('home');
+      if (activeQuestion) {
+        activeQuestion.classList.add("active");
+      }
 
-    },1000);
+      const percent =
+        Math.round((currentStep / totalSteps) * 100);
 
-}
+      document.getElementById("questionCounter").textContent =
+        `QUESTION ${currentStep} OF ${totalSteps}`;
+
+      document.getElementById("progressPercent").textContent =
+        `${percent}%`;
+
+      document.getElementById("progressFill").style.width =
+        `${percent}%`;
+
+      document.getElementById("backButton").style.display =
+        currentStep === 1 ? "none" : "inline-flex";
+
+      const nextButton =
+        document.getElementById("nextButton");
+
+      if (currentStep === totalSteps) {
+        nextButton.textContent = "START MY SEARCH →";
+      } else {
+        nextButton.textContent = "NEXT →";
+      }
+
+    }
 
 
-/* =========================
-   INITIALISE
-========================= */
+    /* ========================================
+       SEND SEARCH TO FORMSPREE
+    ======================================== */
 
-updateFinder();
+    async function sendSearch() {
 
-</script>
+      saveTextAnswers();
+
+      if (!answers.customerName) {
+        alert("Please enter your name.");
+        return;
+      }
+
+      if (!answers.customerEmail) {
+        alert("Please enter your email address.");
+        return;
+      }
+
+      const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailPattern.test(answers.customerEmail)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+
+      const nextButton =
+        document.getElementById("nextButton");
+
+      const originalText =
+        nextButton.textContent;
+
+      nextButton.disabled = true;
+      nextButton.textContent = "SENDING...";
+
+
+      try {
+
+        const formData = new FormData();
+
+        formData.append(
+          "name",
+          answers.customerName
+        );
+
+        formData.append(
+          "email",
+          answers.customerEmail
+        );
+
+        formData.append(
+          "whatsapp",
+          answers.customerWhatsApp || "Not provided"
+        );
+
+        formData.append(
+          "budget",
+          answers.budget || "Not provided"
+        );
+
+        formData.append(
+          "riding_type",
+          answers.riding.length
+            ? answers.riding.join(", ")
+            : "Not provided"
+        );
+
+        formData.append(
+          "new_or_second_hand",
+          answers.condition || "Not provided"
+        );
+
+        formData.append(
+          "where_they_ride",
+          answers.whereRide || "Not provided"
+        );
+
+        formData.append(
+          "what_matters_most",
+          answers.priorities.length
+            ? answers.priorities.join(", ")
+            : "Not provided"
+        );
+
+        formData.append(
+          "height",
+          answers.height || "Not provided"
+        );
+
+        formData.append(
+          "experience",
+          answers.experience || "Not provided"
+        );
+
+        formData.append(
+          "preferred_brands",
+          answers.brands || "Not provided"
+        );
+
+        formData.append(
+          "brands_not_wanted",
+          answers.avoidBrands || "None specified"
+        );
+
+        formData.append(
+          "specific_requirements",
+          answers.requirements || "None specified"
+        );
+
+        formData.append(
+          "_subject",
+          `New RideFound MTB Search — ${answers.customerName}`
+        );
+
+        formData.append(
+          "_replyto",
+          answers.customerEmail
+        );
+
+
+        const response = await fetch(
+          FORM_ENDPOINT,
+          {
+            method: "POST",
+            body: formData,
+            headers: {
+              "Accept": "application/json"
+            }
+          }
+        );
+
+
+        if (response.ok) {
+
+          showPage("success");
+
+          resetFinder();
+
+        } else {
+
+          let errorMessage =
+            "Something went wrong while sending your search.";
+
+          try {
+
+            const data =
+              await response.json();
+
+            if (data?.errors?.length) {
+              errorMessage =
+                data.errors
+                  .map(error => error.message)
+                  .join("\n");
+            }
+
+          } catch (error) {
+            // Keep default message
+          }
+
+          alert(
+            errorMessage +
+            "\n\nPlease try again."
+          );
+
+          nextButton.disabled = false;
+          nextButton.textContent = originalText;
+
+        }
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert(
+          "We couldn't send your search right now. " +
+          "Please check your internet connection and try again."
+        );
+
+        nextButton.disabled = false;
+        nextButton.textContent = originalText;
+
+      }
+
+    }
+
+
+    /* ========================================
+       RESET FINDER
+    ======================================== */
+
+    function resetFinder() {
+
+      currentStep = 1;
+
+      answers.budget = "";
+      answers.riding = [];
+      answers.condition = "";
+      answers.whereRide = "";
+      answers.priorities = [];
+      answers.height = "";
+      answers.experience = "";
+      answers.brands = "";
+      answers.avoidBrands = "";
+      answers.requirements = "";
+      answers.customerName = "";
+      answers.customerEmail = "";
+      answers.customerWhatsApp = "";
+
+
+      document.querySelectorAll(".option").forEach(option => {
+        option.classList.remove("selected");
+      });
+
+
+      document.querySelectorAll(
+        ".text-input, .textarea"
+      ).forEach(input => {
+        input.value = "";
+      });
+
+
+      document.getElementById("nextButton").disabled = false;
+
+      updateQuestion();
+
+    }
+
+
+    /* ========================================
+       INITIALISE
+    ======================================== */
+
+    updateQuestion();
+
+  </script>
 
 </body>
 </html>
